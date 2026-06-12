@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
+.expertise {
+  padding: 120px 0;
+  background: linear-gradient(
+    180deg,
+    #0c2d2f 0%,
+    #12393b 100%
+  );
+
+  position: relative;
+  overflow: hidden;
+}
+
+.expertise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(0, 255, 255, 0.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(0, 255, 255, 0.08),
+      transparent 30%
+    );
+
+  pointer-events: none;
+}
+
+.expertise-header {
+  text-align: center;
+  margin-bottom: 70px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  color: white;
+  margin-bottom: 20px;
+}
+
+.section-title span {
+  width: 70px;
+  height: 2px;
+  background: #27c5d6;
+}
+
+.expertise-header h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 64px;
+  line-height: 1.1;
+  color: white;
+  font-weight: 500;
+}
+
+.expertise-header h2 span {
+  color: #27c5d6;
+}
+
+.cards {
+  width: 90%;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.service-card {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+  border-radius: 35px;
+}
+
+.service-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.service-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85),
+    transparent 50%
+  );
+}
+
+.arrow-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  width: 55px;
+  height: 55px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: white;
+  color: #27c5d6;
+
+  z-index: 3;
+  cursor: pointer;
+}
+
+.arrow-btn.active {
+  background: #27c5d6;
+  color: white;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+
+  z-index: 3;
+  color: white;
+}
+
+.small {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.card-overlay h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.slider-dots {
+  margin-top: 50px;
+
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.slider-dots span {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+  background: white;
+}
+
+.slider-dots .active {
+  width: 14px;
+  height: 14px;
+  background: #d9d9d9;
+}
