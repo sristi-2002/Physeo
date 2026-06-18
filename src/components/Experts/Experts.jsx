@@ -1,28 +1,29 @@
 import "./Experts.css";
 import { ArrowUpRight } from "lucide-react";
+import Reveal from "../Reveal/Reveal";
 
 const services = [
   {
     image:
       "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800",
-    title: "Experienced Rehabilitation",
+    title: "Orthopedic Physiotherapy",
   },
   {
     image:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800",
-    title: "Bodybalance Therapy",
+    title: "Sports Injury Rehabilitation",
   },
   {
     image:
       "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800",
-    title: "Shockwave Therapy",
-    subtitle: "Mobility Improvement",
+    title: "Spine Care & Manual Therapy",
+    subtitle: "Posture & Mobility",
     active: true,
   },
   {
     image:
       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800",
-    title: "Chiropractor Adjusting",
+    title: "Neurological Physiotherapy",
   },
 ];
 
@@ -30,21 +31,26 @@ export default function Experts() {
   return (
     <section className="expertise">
       <div className="expertise-header">
-        <div className="section-title">
+        <Reveal className="section-title">
           <span></span>
           <p>PHYSIO CATEGORIES</p>
-        </div>
+        </Reveal>
 
-        <h2>
+        <Reveal as="h2" delay={80}>
           Comprehensive Physiotherapy <span>Solution</span>
           <br />
           For <span>Pain Relief</span> And Recovery
-        </h2>
+        </Reveal>
       </div>
 
       <div className="cards">
         {services.map((item, index) => (
-          <div className="service-card" key={index}>
+          <Reveal
+            direction="up"
+            delay={index * 120}
+            className="service-card"
+            key={index}
+          >
             <img src={item.image} alt={item.title} />
 
             <button
@@ -62,7 +68,7 @@ export default function Experts() {
 
               <h3>{item.title}</h3>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
 

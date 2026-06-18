@@ -1,14 +1,15 @@
 import React from "react";
 import "./Appointment.css";
 import { FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
+import Reveal from "../Reveal/Reveal";
 
 const Appointment = () => {
   return (
     <section className="appointment-section">
       <div className="appointment-container">
-        <div className="appointment-left">
+        <Reveal direction="left" className="appointment-left">
           <span className="section-subtitle">
-            WHY CHOOSE OUR SERVICES
+            BOOK YOUR CONSULTATION TODAY
           </span>
 
           <h2>
@@ -16,7 +17,8 @@ const Appointment = () => {
           </h2>
 
           <p>
-            We're Dedicated To Providing More Than Just Treatment
+            Your Trusted Partner In Recovery And Wellness In Salt Lake
+            Sector III, Kolkata.
           </p>
 
           <div className="contact-info">
@@ -24,7 +26,7 @@ const Appointment = () => {
               <FaPhoneAlt />
               <div>
                 <small>Phone Number</small>
-                <h4>+864 846 75324</h4>
+                <h4>+91 891 047 7963</h4>
               </div>
             </div>
 
@@ -32,7 +34,7 @@ const Appointment = () => {
               <FaEnvelope />
               <div>
                 <small>Email Address</small>
-                <h4>info@physio.com</h4>
+                <h4>info@addlifephysiocare.com</h4>
               </div>
             </div>
 
@@ -44,9 +46,9 @@ const Appointment = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="appointment-right">
+        <Reveal direction="right" delay={120} className="appointment-right">
           <form>
             <div className="form-row">
               <input type="text" placeholder="Name*" />
@@ -56,9 +58,14 @@ const Appointment = () => {
             <div className="form-row">
               <select>
                 <option>Type Of Service Enquiry*</option>
-                <option>Physiotherapy</option>
-                <option>Sports Injury</option>
-                <option>Rehabilitation</option>
+                <option>Orthopedic Physiotherapy</option>
+                <option>Spine Care & Manual Therapy</option>
+                <option>Sports Injury Rehabilitation</option>
+                <option>Neurological Physiotherapy</option>
+                <option>Post-Surgical Rehabilitation</option>
+                <option>Geriatric Physiotherapy</option>
+                <option>Pediatric Physiotherapy</option>
+                <option>Home Physiotherapy Services</option>
               </select>
 
               <input type="datetime-local" />
@@ -73,15 +80,15 @@ const Appointment = () => {
               Schedule Your Visit →
             </button>
           </form>
-        </div>
+        </Reveal>
       </div>
 
-      <div className="appointment-image">
+      <Reveal direction="up" delay={100} className="appointment-image">
         <img
           src="/images/appointment.jpg"
           alt="Appointment"
         />
-      </div>
+      </Reveal>
     </section>
   );
 };

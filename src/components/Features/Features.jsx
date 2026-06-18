@@ -1,10 +1,11 @@
 import React from "react";
 import "./Features.css";
+import Reveal from "../Reveal/Reveal";
 
 const progressData = [
-  { title: "Empathy & Patience", value: 88 },
-  { title: "Clear Communication", value: 90 },
-  { title: "Professional Experience", value: 95 },
+  { title: "Evidence-Based Physiotherapy", value: 95 },
+  { title: "Personalized Treatment Plans", value: 92 },
+  { title: "Patient-Centered Care", value: 90 },
 ];
 
 const steps = [
@@ -26,7 +27,7 @@ const Features = () => {
     <section className="features">
       {/* TOP SECTION */}
       <div className="features-top">
-        <div className="features-images">
+        <Reveal direction="left" className="features-images">
           <div className="img-grid">
             <img
               src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=900&q=80"
@@ -53,19 +54,20 @@ const Features = () => {
             <span>PETA</span>
             <span>PRAD</span>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="features-content">
+        <Reveal direction="right" delay={120} className="features-content">
           <p className="subtitle">WHY CHOOSE US</p>
 
           <h2>
-            Benefits Of Choosing Our <span>Physiotherapy Clinic</span>
+            Why Choose <span>Addlife Physiocare</span>
           </h2>
 
           <p className="description">
-            We’re dedicated to providing more than just treatment. We offer
-            personalized care tailored to your recovery journey with
-            compassionate professionals and proven techniques.
+            Experienced physiotherapists, customized rehabilitation programs,
+            and scientifically proven techniques. Our holistic approach focuses
+            on pain relief, movement restoration, injury prevention, and
+            long-term wellness.
           </p>
 
           {progressData.map((item, index) => (
@@ -84,17 +86,17 @@ const Features = () => {
           <button className="btn-primary">
             Book This Service →
           </button>
-        </div>
+        </Reveal>
       </div>
 
       {/* BOTTOM SECTION */}
       <div className="recovery-section">
-        <p className="subtitle">TRUSTED CARE</p>
+        <Reveal as="p" className="subtitle">TRUSTED CARE</Reveal>
 
-        <h2>
+        <Reveal as="h2" delay={80}>
           How It <span>Works</span> Your Path <br />
           To Recovery
-        </h2>
+        </Reveal>
 
         <div className="recovery-container">
           <div className="circle-bg"></div>

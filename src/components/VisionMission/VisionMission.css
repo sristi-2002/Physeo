@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
+.vision-mission {
+  background: #edf1eb;
+  padding: 110px 90px;
+}
+
+.vm-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title-vm {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-title-vm span {
+  width: 70px;
+  height: 2px;
+  background: #2ac5d6;
+}
+
+.section-title-vm p {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: #333;
+}
+
+.vm-header h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 56px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.vm-header h2 span {
+  color: #2ac5d6;
+}
+
+.vm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.vm-card {
+  border-radius: 32px;
+  padding: 50px 46px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.vm-card.is-visible:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 56px rgba(12, 45, 47, 0.16);
+}
+
+.vision-card {
+  background: #fff;
+  border: 1px solid #e3e8e0;
+}
+
+.mission-card {
+  background: linear-gradient(160deg, #0c2d2f 0%, #12393b 100%);
+}
+
+.vm-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  background: #2ac5d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 26px;
+}
+
+.vm-card h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.vision-card h3 {
+  color: #1a1a1a;
+}
+
+.mission-card h3 {
+  color: #fff;
+}
+
+.vision-card p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #5a5a5a;
+}
+
+.mission-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mission-card li {
+  position: relative;
+  padding-left: 32px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15.5px;
+  line-height: 1.6;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.mission-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(42, 197, 214, 0.18);
+  color: #2ac5d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mission-card li:hover {
+  transform: translateX(6px);
+  color: #fff;
+}
+
+@media (max-width: 860px) {
+  .vision-mission {
+    padding: 70px 22px;
+  }
+  .vm-grid {
+    grid-template-columns: 1fr;
+  }
+  .vm-header h2 {
+    font-size: 40px;
+  }
+}

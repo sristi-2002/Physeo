@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
+.why-choose {
+  background: #fff;
+  padding: 110px 90px;
+}
+
+.why-choose-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title-wc {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-title-wc span {
+  width: 70px;
+  height: 2px;
+  background: #2ac5d6;
+}
+
+.section-title-wc p {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: #333;
+}
+
+.why-choose-header h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 56px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.why-choose-header h2 span {
+  color: #2ac5d6;
+}
+
+.why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-card {
+  position: relative;
+  overflow: hidden;
+  background: #f4f7f3;
+  border: 1px solid #e3e8e0;
+  border-radius: 28px;
+  padding: 42px 36px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease,
+    background 0.4s ease;
+}
+
+.why-card.is-visible:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 26px 54px rgba(12, 45, 47, 0.14);
+  background: #0c2d2f;
+}
+
+.why-icon {
+  width: 66px;
+  height: 66px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid #e3e8e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 24px;
+  transition: background 0.4s ease, transform 0.4s ease;
+}
+
+.why-card.is-visible:hover .why-icon {
+  background: #2ac5d6;
+  transform: rotate(-6deg) scale(1.06);
+}
+
+.why-card h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+  transition: color 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.why-card p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #5f5f5f;
+  transition: color 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.why-card.is-visible:hover h3 {
+  color: #fff;
+}
+
+.why-card.is-visible:hover p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.why-number {
+  position: absolute;
+  bottom: -18px;
+  right: 6px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 110px;
+  font-weight: 600;
+  line-height: 1;
+  color: rgba(42, 197, 214, 0.12);
+  transition: color 0.4s ease;
+  z-index: 1;
+}
+
+.why-card.is-visible:hover .why-number {
+  color: rgba(42, 197, 214, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .why-choose-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .why-choose {
+    padding: 70px 22px;
+  }
+  .why-choose-grid {
+    grid-template-columns: 1fr;
+  }
+  .why-choose-header h2 {
+    font-size: 40px;
+  }
+}

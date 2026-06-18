@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import Reveal from "../Reveal/Reveal";
 import {
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -24,16 +25,19 @@ const Address = () => {
     <footer className="footer">
       <div className="gallery-row">
         {gallery.map((img, index) => (
-          <img key={index} src={img} alt="" />
+          <Reveal direction="zoom" delay={index * 80} key={index}>
+            <img src={img} alt="" />
+          </Reveal>
         ))}
       </div>
 
       <div className="footer-content">
-        <div className="footer-column">
-          <h2>PHYSEO</h2>
+        <Reveal direction="up" className="footer-column">
+          <h2>Addlife Physiocare</h2>
 
           <p>
-            The Majority Have Suffered Alteration In Some Form.
+            We Keep You Moving — Advanced Physiotherapy, Rehabilitation
+            & Pain Management.
           </p>
 
           <div className="social-icons">
@@ -42,48 +46,50 @@ const Address = () => {
             <FaFacebookF />
             <FaLinkedinIn />
           </div>
-        </div>
+        </Reveal>
 
-        <div className="footer-column">
+        <Reveal direction="up" delay={90} className="footer-column">
           <h4>Address</h4>
 
           <p>
             <FaMapMarkerAlt />
-            1425 E 120th St, Los Angeles, CA
+            Salt Lake Sector III, Kolkata, West Bengal
           </p>
 
           <p>
             <FaPhoneAlt />
-            +349 458 4739
+            +91 891 047 7963
           </p>
 
           <p>
             <FaEnvelope />
-            physio@gmail.com
+            info@addlifephysiocare.com
           </p>
-        </div>
+        </Reveal>
 
-        <div className="footer-column">
-          <h4>Blogs</h4>
+        <Reveal direction="up" delay={180} className="footer-column">
+          <h4>Our Services</h4>
           <ul>
-            <li>Guide</li>
-            <li>Tourist</li>
-            <li>Newsletter</li>
-            <li>Help</li>
+            <li>Orthopedic Physiotherapy</li>
+            <li>Spine Care & Manual Therapy</li>
+            <li>Sports Injury Rehabilitation</li>
+            <li>Neurological Physiotherapy</li>
+            <li>Home Physiotherapy</li>
           </ul>
-        </div>
+        </Reveal>
 
-        <div className="footer-column">
-          <h4>Resources</h4>
+        <Reveal direction="up" delay={270} className="footer-column">
+          <h4>Conditions We Treat</h4>
           <ul>
-            <li>Travel Guide</li>
-            <li>Locations</li>
-            <li>News</li>
-            <li>Pricing</li>
+            <li>Back & Neck Pain</li>
+            <li>Knee & Shoulder Pain</li>
+            <li>Sciatica & Arthritis</li>
+            <li>Ankylosing Spondylitis</li>
+            <li>Stroke & Parkinson’s</li>
           </ul>
-        </div>
+        </Reveal>
 
-        <div className="footer-column">
+        <Reveal direction="up" delay={360} className="footer-column">
           <h4>Newsletter</h4>
 
           <input
@@ -92,11 +98,11 @@ const Address = () => {
           />
 
           <button>Subscribe Now</button>
-        </div>
+        </Reveal>
       </div>
 
       <div className="footer-bottom">
-        <p>© 2024 PHYSEO. All Rights Reserved.</p>
+        <p>© 2026 Addlife Physiocare. All Rights Reserved.</p>
 
         <div>
           <span>Terms & Conditions</span>

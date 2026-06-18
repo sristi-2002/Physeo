@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Price.css";
+import Reveal from "../Reveal/Reveal";
 
 const Schedules = () => {
   const [plan, setPlan] = useState("monthly");
@@ -7,44 +8,44 @@ const Schedules = () => {
   const plans = [
     {
       title: "Pain Relief",
-      price: "$60",
+      price: "₹600",
       features: [
         "Back Pain Therapy",
         "Neck Pain Relief",
         "Joint Pain Management",
-        "Headache Therapy",
+        "Sciatica & Arthritis Care",
       ],
     },
     {
       title: "Injury Recovery",
-      price: "$95",
+      price: "₹900",
       active: true,
       features: [
         "Sports Injury Rehab",
-        "Post-Fracture Therapy",
+        "Post-Surgical Recovery",
         "Sprain/Strain Care",
         "Ligament Tear Recovery",
       ],
     },
     {
-      title: "Mobility Enhancement",
-      price: "$150",
+      title: "Mobility & Neuro Rehab",
+      price: "₹1500",
       features: [
-        "Gait Training",
-        "Balance Improvement",
+        "Gait & Balance Training",
         "Stroke Rehabilitation",
-        "Elderly Mobility Care",
+        "Geriatric Mobility Care",
+        "Home Physiotherapy",
       ],
     },
   ];
 
   return (
     <section className="schedule-section">
-      <span className="schedule-tag">DISCOUNTED PLANS</span>
+      <Reveal as="span" className="schedule-tag">DISCOUNTED PLANS</Reveal>
 
-      <h2>
+      <Reveal as="h2" delay={80}>
         Affordable <span>Physiotherapy Plans</span>
-      </h2>
+      </Reveal>
 
       <div className="billing-toggle">
         <button
@@ -64,7 +65,9 @@ const Schedules = () => {
 
       <div className="plans-grid">
         {plans.map((item, index) => (
-          <div
+          <Reveal
+            direction="up"
+            delay={index * 120}
             className={`plan-card ${
               item.active ? "featured-card" : ""
             }`}
@@ -74,7 +77,7 @@ const Schedules = () => {
 
             <div className="price">
               {item.price}
-              <span>/Month</span>
+              <span>/Session</span>
             </div>
 
             <ul>
@@ -86,7 +89,7 @@ const Schedules = () => {
             <button className="book-btn">
               Book Now
             </button>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>

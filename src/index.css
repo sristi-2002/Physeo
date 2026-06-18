@@ -24,7 +24,7 @@ body {
   padding: 12px 25px;
   margin-top: 20px;
   border: none;
-  background: #0066ff;
+  background: #22c7d8;
   color: white;
   cursor: pointer;
 }
@@ -33,4 +33,116 @@ html {
 }
 section {
   scroll-margin-top: 120px;
+}
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.email-btn, .phone-btn {
+  padding: 10px 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.email-btn {
+  background: #22c7d8;
+  color: #fff;
+}
+
+.phone-btn {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+/* TITLE LETTERS */
+.hero-title .letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-15px);
+  animation: revealLetter 0.15s forwards;
+}
+
+@keyframes revealLetter {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* TRUSTED CARE */
+.trusted-care span {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: trustedTyping 3s steps(20) forwards;
+}
+
+@keyframes trustedTyping {
+  from {
+    width: 0;
+  }
+  to {
+    width: 260px; /* increase this */
+  }
+}
+
+/* PARAGRAPH */
+.hero-text {
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+}
+
+.typing-line {
+  animation:
+    typing1 4s steps(65, end) forwards;
+}
+
+.typing-line2 {
+  margin-top: 10px;
+  animation:
+    typing2 3s steps(35, end) forwards;
+  animation-delay: 4.5s;
+}
+
+@keyframes typing1 {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes typing2 {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* BUTTONS */
+.animate-buttons {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: buttonReveal 0.8s ease forwards;
+  animation-delay: 5s;
+}
+
+@keyframes buttonReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

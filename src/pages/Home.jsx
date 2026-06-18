@@ -1,18 +1,21 @@
 import TopBar from "../components/TopBar/TopBar";
 import Navbar from "../components/Navbar/Navbar";
- import Hero from "../components/Hero/Hero";
- import Features from "../components/Features/Features";
- import About from "../components/About/About";
+import Hero from "../components/Hero/Hero";
+import Features from "../components/Features/Features";
+import About from "../components/About/About";
 import Services from "../components/Services/Services";
-// import WhyChooseUs from "../components/WhyChooseUs/WhyChooseUs";
-// import Statistics from "../components/Statistics/Statistics";
- import Appointment from "../components/Appointment/Appointment";
+import Conditions from "../components/Conditions/Conditions";
+import Techniques from "../components/Techniques/Techniques";
+import WhyChoose from "../components/WhyChoose/WhyChoose";
+import Promise from "../components/Promise/Promise";
+import VisionMission from "../components/VisionMission/VisionMission";
+import Appointment from "../components/Appointment/Appointment";
 import Experts from "../components/Experts/Experts";
- import Testimonials from "../components/Testimonials/Testimonials";
+import Testimonials from "../components/Testimonials/Testimonials";
 import Price from "../components/Price/Price";
-// import Blog from "../components/Blog/Blog";
-// import Newsletter from "../components/Newsletter/Newsletter";
+import SeoBand from "../components/SeoBand/SeoBand";
 import Footer from "../components/Footer/Footer";
+
 function Home() {
   return (
     <>
@@ -38,8 +41,28 @@ function Home() {
         <Services />
       </section>
 
+      <section id="conditions">
+        <Conditions />
+      </section>
+
+      <section id="techniques">
+        <Techniques />
+      </section>
+
       <section id="features">
         <Features />
+      </section>
+
+      <section id="why-choose">
+        <WhyChoose />
+      </section>
+
+      <section id="promise">
+        <Promise />
+      </section>
+
+      <section id="vision-mission">
+        <VisionMission />
       </section>
 
       <section id="testimonials">
@@ -52,6 +75,10 @@ function Home() {
 
       <section id="appointment">
         <Appointment />
+      </section>
+
+      <section id="seo">
+        <SeoBand />
       </section>
 
       <section id="footer">

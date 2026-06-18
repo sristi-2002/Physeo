@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
+.techniques {
+  background: #edf1eb;
+  padding: 110px 90px;
+}
+
+.techniques-header {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.section-title-tech {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-title-tech span {
+  width: 70px;
+  height: 2px;
+  background: #2ac5d6;
+}
+
+.section-title-tech p {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: #333;
+}
+
+.techniques-header h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 56px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.techniques-header h2 span {
+  color: #2ac5d6;
+}
+
+.techniques-sub {
+  max-width: 600px;
+  margin: 18px auto 0;
+  color: #5a5a5a;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.techniques-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.technique-card {
+  background: #fff;
+  border: 1px solid #e3e8e0;
+  border-radius: 22px;
+  padding: 34px 26px;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease,
+    background 0.4s ease;
+}
+
+.technique-card.is-visible:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 44px rgba(12, 45, 47, 0.12);
+  background: #123d40;
+}
+
+.technique-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #edf1eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  transition: background 0.4s ease, transform 0.4s ease;
+}
+
+.technique-card.is-visible:hover .technique-icon {
+  background: #2ac5d6;
+  transform: scale(1.12);
+}
+
+.technique-card h4 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 21px;
+  font-weight: 600;
+  color: #1a1a1a;
+  transition: color 0.4s ease;
+}
+
+.technique-card.is-visible:hover h4 {
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .techniques-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .techniques {
+    padding: 70px 22px;
+  }
+  .techniques-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .techniques-header h2 {
+    font-size: 40px;
+  }
+}

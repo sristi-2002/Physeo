@@ -18,14 +18,14 @@ export default function TopBar() {
           </div>
 
           <p>
-            Barasat, Badu, West Bengal, Kol - 128,
-            India
+            Salt Lake Sector III, Kolkata,
+            West Bengal, India
           </p>
         </div>
 
         <div className="topbar-center">
           <span>
-            Our Service Timing : 10:00am To 9:00am
+            Our Service Timing : 10:00am To 9:00pm (Mon to Sat)
           </span>
         </div>
 

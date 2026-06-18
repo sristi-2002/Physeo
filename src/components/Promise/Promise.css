@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
+.promise {
+  background: #fff;
+  padding: 110px 90px;
+}
+
+.promise-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.section-title-pr {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-title-pr span {
+  width: 70px;
+  height: 2px;
+  background: #2ac5d6;
+}
+
+.section-title-pr p {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: #333;
+}
+
+.promise-header h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 56px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.promise-header h2 span {
+  color: #2ac5d6;
+}
+
+.promise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto 70px;
+}
+
+.promise-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f4f7f3;
+  border: 1px solid #e3e8e0;
+  border-radius: 16px;
+  padding: 22px 26px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  transition: transform 0.35s ease, box-shadow 0.35s ease,
+    background 0.35s ease, color 0.35s ease;
+}
+
+.promise-item.is-visible:hover {
+  transform: translateY(-6px);
+  background: #0c2d2f;
+  color: #fff;
+  box-shadow: 0 22px 44px rgba(12, 45, 47, 0.16);
+}
+
+.promise-check {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(42, 197, 214, 0.16);
+  color: #2ac5d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+.promise-item.is-visible:hover .promise-check {
+  background: #2ac5d6;
+  color: #fff;
+}
+
+.promise-banner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(160deg, #0c2d2f 0%, #12393b 100%);
+  border-radius: 32px;
+  padding: 64px 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.promise-banner::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(42, 197, 214, 0.14);
+}
+
+.promise-banner-label {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #2ac5d6;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.promise-banner h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 46px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #fff;
+  max-width: 780px;
+  margin: 0 auto 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.promise-banner h3 span {
+  color: #2ac5d6;
+}
+
+.promise-brand {
+  position: relative;
+  z-index: 2;
+}
+
+.promise-brand strong {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.promise-brand em {
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 1024px) {
+  .promise-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .promise {
+    padding: 70px 22px;
+  }
+  .promise-grid {
+    grid-template-columns: 1fr;
+  }
+  .promise-header h2 {
+    font-size: 40px;
+  }
+  .promise-banner {
+    padding: 48px 26px;
+  }
+  .promise-banner h3 {
+    font-size: 32px;
+  }
+}

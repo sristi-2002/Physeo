@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
+.conditions {
+  position: relative;
+  padding: 110px 90px;
+  background: linear-gradient(180deg, #0c2d2f 0%, #12393b 100%);
+  overflow: hidden;
+}
+
+.conditions::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at 15% 20%,
+      rgba(42, 197, 214, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(42, 197, 214, 0.12),
+      transparent 30%
+    );
+  pointer-events: none;
+}
+
+.conditions-header {
+  text-align: center;
+  margin-bottom: 55px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-title-cond {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.section-title-cond span {
+  width: 70px;
+  height: 2px;
+  background: #2ac5d6;
+}
+
+.section-title-cond p {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+}
+
+.conditions-header h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 56px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.conditions-header h2 span {
+  color: #2ac5d6;
+}
+
+.conditions-sub {
+  max-width: 620px;
+  margin: 18px auto 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.conditions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.condition-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #eaf6f6;
+  padding: 13px 24px;
+  border-radius: 40px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.35s ease, transform 0.35s ease,
+    border-color 0.35s ease, color 0.35s ease;
+  cursor: default;
+}
+
+.chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2ac5d6;
+  transition: transform 0.35s ease;
+}
+
+.condition-chip.is-visible:hover {
+  background: #2ac5d6;
+  border-color: #2ac5d6;
+  color: #0c2d2f;
+  transform: translateY(-5px) scale(1.04);
+}
+
+.condition-chip.is-visible:hover .chip-dot {
+  background: #0c2d2f;
+  transform: scale(1.4);
+}
+
+@media (max-width: 720px) {
+  .conditions {
+    padding: 70px 22px;
+  }
+  .conditions-header h2 {
+    font-size: 40px;
+  }
+}

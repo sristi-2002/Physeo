@@ -68,6 +68,15 @@
   transform: translateY(-15px);
 }
 
+/* Keep the featured card's lift while still allowing the scroll-reveal entrance */
+.featured-card.reveal {
+  transform: translateY(48px);
+}
+
+.featured-card.reveal.is-visible {
+  transform: translateY(-15px);
+}
+
 .plan-card h3 {
   margin-bottom: 20px;
 }

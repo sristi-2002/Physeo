@@ -1,17 +1,18 @@
 import React from "react";
 import "./Testimonials.css";
+import Reveal from "../Reveal/Reveal";
 
 const Testimonials = () => {
   return (
     <section className="testimonials">
-      <div className="testimonials-left">
+      <Reveal direction="left" className="testimonials-left">
         <img
           src="/images/testimonial.jpg"
           alt="Patient Testimonial"
         />
-      </div>
+      </Reveal>
 
-      <div className="testimonials-right">
+      <Reveal direction="right" delay={120} className="testimonials-right">
         <span className="section-tag">TESTIMONIALS</span>
 
         <h2>
@@ -21,10 +22,10 @@ const Testimonials = () => {
         </h2>
 
         <p>
-          After my knee surgery, I was worried about walking again.
-          The personalized care and motivational support I received
-          here made all the difference. I'm now back to hiking every
-          weekend!
+          After years of chronic back pain, I had almost given up hope.
+          Dr. Kousik Mallick and the team at Addlife Physiocare identified
+          the root cause and built a treatment plan just for me. Today I'm
+          pain-free and moving better than ever!
         </p>
 
         <div className="stars">★★★★★</div>
@@ -35,8 +36,8 @@ const Testimonials = () => {
             alt="User"
           />
           <div>
-            <h4>Jordan Lee</h4>
-            <span>Denver, Colorado</span>
+            <h4>Soumen Das</h4>
+            <span>Salt Lake, Kolkata</span>
           </div>
         </div>
 
@@ -44,7 +45,7 @@ const Testimonials = () => {
           <button>←</button>
           <button>→</button>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 };

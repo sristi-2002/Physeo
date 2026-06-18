@@ -1,46 +1,66 @@
 import "./Hero.css";
+import { useEffect, useState } from "react";
+
+const words = [
+  { text: "We", color: "white" },
+  { text: "Keep", color: "white" },
+  { text: "You", color: "blue" },
+  { text: "Moving", color: "blue" }
+];
 
 export default function Hero() {
+  const [key, setKey] = useState(0);
+
+ useEffect(() => {
+  const interval = setInterval(() => {
+    setKey((prev) => prev + 1);
+  }, 30000); // animation + 5s pause
+
+  return () => clearInterval(interval);
+}, []);
+
   return (
     <section className="hero">
       <div className="overlay" />
 
       <div className="hero-content">
 
-        <div className="trusted-care">
-          <span className="line"></span>
-          <span>TRUSTED CARE</span>
-        </div>
+        {/* TRUSTED CARE */}
+       <div key={`tc-${key}`} className="trusted-care">
+  <span> - - T R U S T E D &nbsp; C A R E</span>
+</div>
 
-       <h1>
-  Your Dream <span>Smile</span>
-  <br />
-  <span>Starts</span>
-  <br />
-  With <span>Us</span> Today
+        {/* HERO TEXT */}
+       <h1 key={`title-${key}`} className="hero-title">
+  {words.map((word, wIndex) => (
+    <span key={wIndex}>
+      {word.text.split("").map((char, i) => (
+        <span
+          key={i}
+          className={`letter ${word.color === "blue" ? "blue" : ""}`}
+          style={{
+            animationDelay: `${(wIndex * 6 + i) * 0.08}s`,
+          }}
+        >
+          {char}
+        </span>
+      ))}
+      <span>&nbsp;</span>
+    </span>
+  ))}
 </h1>
 
-        <p>
-          Experience Compassionate Care And Advanced Dental Solutions
-          <br />
-          For A Healthier, Brighter Smile.
-        </p>
+        <p key={`text-${key}`} className="hero-text typing-line">
+  Advanced Physiotherapy, Rehabilitation, Spine Care & Pain Management
+</p>
 
-        <div className="hero-buttons">
-          <button className="email-btn">
-            Info@Physeo.Com
-          </button>
-
-          <button className="phone-btn">
-            + 864 846 75324
-          </button>
-        </div>
-      </div>
-
-      <div className="slider">
-        <span></span>
-        <span className="active"></span>
-        <span></span>
+<p key={`text2-${key}`} className="hero-text typing-line2">
+  Clinic In Salt Lake Sector III, Kolkata.
+</p>
+<div className="hero-buttons animate-buttons">
+  <button className="email-btn">info@addlifephysiocare.com</button>
+  <button className="phone-btn">+91 891 047 7963</button>
+</div>
       </div>
     </section>
   );
