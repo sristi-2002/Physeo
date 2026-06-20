@@ -7,13 +7,14 @@ import Services from "../components/Services/Services";
 import Conditions from "../components/Conditions/Conditions";
 import Techniques from "../components/Techniques/Techniques";
 import WhyChoose from "../components/WhyChoose/WhyChoose";
-import Promise from "../components/Promise/Promise";
+// import Promise from "../components/Promise/Promise";
 import VisionMission from "../components/VisionMission/VisionMission";
 import Appointment from "../components/Appointment/Appointment";
-import Experts from "../components/Experts/Experts";
+//import Experts from "../components/Experts/Experts";
 import Testimonials from "../components/Testimonials/Testimonials";
-import Price from "../components/Price/Price";
-import SeoBand from "../components/SeoBand/SeoBand";
+//import Price from "../components/Price/Price";
+// import SeoBand from "../components/SeoBand/SeoBand";
+//import LocalSeo from "../components/LocalSeo/LocalSeo";
 import Footer from "../components/Footer/Footer";
 
 function Home() {
@@ -33,9 +34,9 @@ function Home() {
         <About />
       </section>
 
-      <section id="experts">
+      {/* <section id="experts">
         <Experts />
-      </section>
+      </section> */}
 
       <section id="services">
         <Services />
@@ -57,9 +58,9 @@ function Home() {
         <WhyChoose />
       </section>
 
-      <section id="promise">
+      {/* <section id="promise">
         <Promise />
-      </section>
+      </section> */}
 
       <section id="vision-mission">
         <VisionMission />
@@ -69,17 +70,21 @@ function Home() {
         <Testimonials />
       </section>
 
-      <section id="price">
+      {/* <section id="price">
         <Price />
-      </section>
+      </section> */}
 
       <section id="appointment">
         <Appointment />
       </section>
 
-      <section id="seo">
+      {/* <section id="local-seo">
+        <LocalSeo />
+      </section> */}
+
+      {/* <section id="seo">
         <SeoBand />
-      </section>
+      </section> */}
 
       <section id="footer">
         <Footer />

@@ -1,12 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
 .appointment-section {
-  background: #eef3ef;
+  background: #e7f4f6;
   padding: 100px 8%;
+}
+
+/* ---------- scrolling services marquee ---------- */
+.appt-marquee {
+  margin: -100px -8% 70px;
+  background: linear-gradient(90deg, #0c2d2f, #103d3f);
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.appt-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: appt-marquee 32s linear infinite;
+}
+
+.appt-marquee:hover .appt-marquee-track {
+  animation-play-state: paused;
+}
+
+.appt-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 26px;
+  padding: 0 26px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 27px;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.appt-marquee-star {
+  color: #2ccbd3;
+  flex-shrink: 0;
+}
+
+@keyframes appt-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .appt-marquee-track {
+    animation: none;
+  }
 }
 
 .appointment-container {
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 40px;
+  gap: 50px;
 }
 
 .appointment-left {
@@ -14,14 +64,40 @@
 }
 
 .section-subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font-size: 12px;
-  color: #2fc3cf;
-  letter-spacing: 2px;
+  color: #16393c;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+.subtitle-line {
+  position: relative;
+  width: 60px;
+  height: 2px;
+  background: #2fc3cf;
+}
+
+.subtitle-line::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #2fc3cf;
 }
 
 .appointment-left h2 {
-  font-size: 48px;
-  margin: 15px 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 50px;
+  font-weight: 500;
+  margin: 16px 0;
+  color: #102f31;
 }
 
 .appointment-left h2 span {
@@ -29,33 +105,58 @@
 }
 
 .appointment-left p {
-  color: #666;
-  margin-bottom: 35px;
+  color: #5c6f6f;
+  margin-bottom: 40px;
 }
 
 .contact-info {
   display: flex;
-  gap: 30px;
+  gap: 26px;
   flex-wrap: wrap;
 }
 
 .info-item {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
 }
 
-.info-item svg {
-  color: #16393c;
-  font-size: 20px;
+.info-item + .info-item {
+  padding-left: 26px;
+  border-left: 1px solid #c4d6cd;
+}
+
+.info-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #16393c;
+  color: #fff;
+}
+
+.info-icon svg {
+  font-size: 16px;
+}
+
+.info-item small {
+  color: #5c6f6f;
+  font-size: 13px;
 }
 
 .info-item h4 {
-  margin: 5px 0 0;
+  margin: 4px 0 0;
+  font-size: 17px;
+  color: #102f31;
 }
 
 .appointment-right {
   flex: 1;
+  position: relative;
+  z-index: 2;
 }
 
 .form-row {
@@ -65,7 +166,8 @@
 }
 
 .form-row input,
-.form-row select {
+.form-row select,
+.form-row .date-field {
   flex: 1;
 }
 
@@ -73,10 +175,48 @@
 .appointment-right select,
 .appointment-right textarea {
   width: 100%;
-  padding: 16px;
+  padding: 17px 20px;
   border: none;
-  border-radius: 12px;
-  background: #fff;
+  border-radius: 14px;
+  background: #eef2ee;
+  color: #102f31;
+  font-size: 14.5px;
+  outline: none;
+}
+
+.appointment-right input::placeholder,
+.appointment-right textarea::placeholder {
+  color: #8a9b9b;
+}
+
+.appointment-right select {
+  appearance: none;
+  cursor: pointer;
+  color: #8a9b9b;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%238a9b9b' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+}
+
+/* date field with calendar icon */
+.date-field {
+  position: relative;
+}
+
+.date-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #16393c;
+  color: #fff;
+  pointer-events: none;
 }
 
 .appointment-right textarea {
@@ -85,25 +225,59 @@
 }
 
 .appointment-right button {
+  position: relative;
   width: 100%;
   border: none;
-  background: #35c8d3;
+  background: #1aa5b0;
   color: white;
   padding: 18px;
-  border-radius: 30px;
+  border-radius: 40px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15.5px;
+  transition: background 0.3s ease;
+}
+
+.appointment-right button:hover {
+  background: #16393c;
+}
+
+.btn-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #16393c;
+  color: #fff;
 }
 
 .appointment-image {
-  margin-top: 30px;
+  position: relative;
+  z-index: 1;
+  margin-top: -120px;
 }
 
+/* the top-right corner is cut out (notch) so the form sits in the gap
+   and the image steps down around it */
 .appointment-image img {
   width: 100%;
-  border-radius: 25px;
-  height: 450px;
+  height: 480px;
   object-fit: cover;
+  display: block;
+  border-radius: 25px;
+  clip-path: polygon(
+    0 0,
+    50% 0,
+    50% 27%,
+    100% 27%,
+    100% 100%,
+    0 100%
+  );
 }
 
 @media (max-width: 992px) {

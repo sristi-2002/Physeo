@@ -1,47 +1,74 @@
 import React from "react";
 import "./Appointment.css";
 import { FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
+import { Sparkle, Calendar, ArrowUpRight } from "lucide-react";
 import Reveal from "../Reveal/Reveal";
+
+const marqueeItems = [
+  "Orthopedic Physiotherapy",
+  "Sports Injury Rehabilitation",
+  "Neurological Physiotherapy",
+  "Pediatric Physiotherapy",
+  "Spine Care & Manual Therapy",
+  "Post-Surgical Rehabilitation",
+  "Geriatric Physiotherapy",
+  "Home Physiotherapy Services",
+];
 
 const Appointment = () => {
   return (
     <section className="appointment-section">
+      <div className="appt-marquee">
+        <div className="appt-marquee-track">
+          {[...marqueeItems, ...marqueeItems].map((item, index) => (
+            <span className="appt-marquee-item" key={index}>
+              <Sparkle size={20} className="appt-marquee-star" />
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
       <div className="appointment-container">
         <Reveal direction="left" className="appointment-left">
           <span className="section-subtitle">
-            BOOK YOUR CONSULTATION TODAY
+            <span className="subtitle-line"></span>
+            WHY CHOOSE US SERVICES
           </span>
 
           <h2>
             Schedule <span>Your Visit</span> Now
           </h2>
 
-          <p>
-            Your Trusted Partner In Recovery And Wellness In Salt Lake
-            Sector III, Kolkata.
-          </p>
+          <p>We're Dedicated To Providing More Than Just Treatment</p>
 
           <div className="contact-info">
             <div className="info-item">
-              <FaPhoneAlt />
+              <span className="info-icon">
+                <FaPhoneAlt />
+              </span>
               <div>
                 <small>Phone Number</small>
-                <h4>+91 891 047 7963</h4>
+                <h4>+ 864 846 75324</h4>
               </div>
             </div>
 
             <div className="info-item">
-              <FaEnvelope />
+              <span className="info-icon">
+                <FaEnvelope />
+              </span>
               <div>
                 <small>Email Address</small>
-                <h4>info@addlifephysiocare.com</h4>
+                <h4>Info@Physio.Com</h4>
               </div>
             </div>
 
             <div className="info-item">
-              <FaClock />
+              <span className="info-icon">
+                <FaClock />
+              </span>
               <div>
-                <small>Service Timing (Mon to Sat)</small>
+                <small>Service Timing ( Mon To Sat )</small>
                 <h4>10:00am To 9:00pm</h4>
               </div>
             </div>
@@ -56,8 +83,10 @@ const Appointment = () => {
             </div>
 
             <div className="form-row">
-              <select>
-                <option>Type Of Service Enquiry*</option>
+              <select defaultValue="">
+                <option value="" disabled>
+                  Type Of Service Enquiry*
+                </option>
                 <option>Orthopedic Physiotherapy</option>
                 <option>Spine Care & Manual Therapy</option>
                 <option>Sports Injury Rehabilitation</option>
@@ -68,7 +97,19 @@ const Appointment = () => {
                 <option>Home Physiotherapy Services</option>
               </select>
 
-              <input type="datetime-local" />
+              <div className="date-field">
+                <input
+                  type="text"
+                  placeholder="Select Date & Time*"
+                  onFocus={(e) => (e.target.type = "datetime-local")}
+                  onBlur={(e) => {
+                    if (!e.target.value) e.target.type = "text";
+                  }}
+                />
+                <span className="date-icon">
+                  <Calendar size={16} />
+                </span>
+              </div>
             </div>
 
             <textarea
@@ -77,7 +118,10 @@ const Appointment = () => {
             ></textarea>
 
             <button type="submit">
-              Schedule Your Visit →
+              Schedule Your Visit
+              <span className="btn-arrow">
+                <ArrowUpRight size={16} />
+              </span>
             </button>
           </form>
         </Reveal>
@@ -85,8 +129,8 @@ const Appointment = () => {
 
       <Reveal direction="up" delay={100} className="appointment-image">
         <img
-          src="/images/appointment.jpg"
-          alt="Appointment"
+          src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80"
+          alt="Physiotherapy session at Addlife Physiocare"
         />
       </Reveal>
     </section>

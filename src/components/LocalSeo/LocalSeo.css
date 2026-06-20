@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
+.local-seo {
+  position: relative;
+  background: linear-gradient(180deg, #f3fbfc 0%, #e8f6f8 100%);
+  padding: 100px 90px;
+  overflow: hidden;
+}
+
+.local-seo-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.local-seo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(42, 197, 214, 0.12);
+  border: 1px solid rgba(42, 197, 214, 0.35);
+  color: #137a85;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  margin-bottom: 22px;
+}
+
+.local-seo-inner h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 50px;
+  font-weight: 500;
+  color: #0c2d2f;
+  margin-bottom: 16px;
+}
+
+.local-seo-inner h2 span {
+  color: #1aa3b3;
+}
+
+.local-seo-lead {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #4a6a6c;
+  margin-bottom: 36px;
+}
+
+.local-seo-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 42px;
+}
+
+.local-seo-chip {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid rgba(18, 57, 59, 0.12);
+  color: #1c4548;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 13.5px;
+  box-shadow: 0 4px 14px rgba(12, 45, 47, 0.05);
+  transition: background 0.35s ease, transform 0.35s ease, color 0.35s ease;
+  cursor: default;
+}
+
+.local-seo-chip.is-visible:hover {
+  background: #2ac5d6;
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+.local-seo-closing {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #34595b;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.local-seo-closing strong {
+  color: #0c2d2f;
+}
+
+@media (max-width: 720px) {
+  .local-seo {
+    padding: 64px 22px;
+  }
+  .local-seo-inner h2 {
+    font-size: 36px;
+  }
+}

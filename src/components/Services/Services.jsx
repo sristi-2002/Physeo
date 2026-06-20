@@ -69,13 +69,14 @@ const categories = [
       "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800",
     items: [
       "Stroke Rehabilitation",
-      "Stroke Recovery",
+      "Stroke Recovery Physiotherapy",
       "Parkinson’s Disease",
       "Bell’s Palsy",
       "Spinal Cord Injury",
       "Multiple Sclerosis",
       "Balance Disorders",
       "Gait Training",
+      "Functional Rehabilitation",
     ],
   },
   {
@@ -148,6 +149,24 @@ const categories = [
       "Joint Care",
       "Posture Correction",
       "Endurance Building",
+    ],
+  },
+  {
+    icon: "🧒",
+    title: "Pediatric Physiotherapy",
+    intro: "Specialized care for children with:",
+    video:
+      "https://videos.pexels.com/video-files/6111018/6111018-sd_960_540_25fps.mp4",
+    poster:
+      "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800",
+    items: [
+      "Developmental Conditions",
+      "Neurological Conditions",
+      "Musculoskeletal Conditions",
+      "Posture & Mobility",
+      "Balance & Coordination",
+      "Strength Development",
+      "Personalized Programs",
     ],
   },
   {
@@ -287,3 +306,113 @@ export default function Services() {
     </section>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Our Physiotherapy & Rehabilitation Services
+
+// Orthopedic Physiotherapy
+
+// Specialized treatment for:
+
+// - Back Pain
+// - Neck Pain
+// - Knee Pain
+// - Shoulder Pain
+// - Frozen Shoulder
+// - Arthritis
+// - Joint Pain
+// - Sciatica
+// - Slip Disc
+// - Cervical Spondylosis
+// - Lumbar Spondylosis
+// - Postural Disorders
+// - Musculoskeletal Injuries
+
+// Spine Care & Manual Therapy
+
+// Our advanced spine rehabilitation programs focus on improving spinal health, posture, mobility, flexibility, and function through:
+
+// - Manual Therapy
+// - Spinal Mobilization
+// - Posture Correction
+// - Core Strengthening
+// - Ergonomic Assessment
+// - Functional Rehabilitation
+// - Chronic Pain Management
+// - Mobility Training
+
+// Ankylosing Spondylitis Physiotherapy
+
+// We provide specialized physiotherapy and rehabilitation for Ankylosing Spondylitis, focusing on:
+
+// - Pain Relief
+// - Spinal Mobility
+// - Posture Improvement
+// - Flexibility Training
+// - Breathing Exercises
+// - Functional Rehabilitation
+// - Long-Term Exercise Programs
+
+// Sports Physiotherapy & Sports Injury Rehabilitation
+
+// Our sports rehabilitation services help athletes and active individuals recover safely and effectively from:
+
+// - Sports Injuries
+// - ACL Injuries
+// - Ligament Injuries
+// - Muscle Tears
+// - Tendon Injuries
+// - Running Injuries
+// - Ankle Sprains
+// - Overuse Injuries
+
+// Services include sports injury treatment, athletic rehabilitation, return-to-sport programs, injury prevention, and performance enhancement.
+
+// Neurological Physiotherapy & Neuro Rehabilitation
+
+// Comprehensive rehabilitation for:
+
+// - Stroke Rehabilitation
+// - Stroke Recovery Physiotherapy
+// - Parkinson’s Disease
+// - Bell’s Palsy
+// - Spinal Cord Injury
+// - Multiple Sclerosis
+// - Balance Disorders
+// - Gait Training
+// - Functional Rehabilitation
+
+// Post-Surgical Rehabilitation
+
+// Supporting recovery after:
+
+// - Knee Replacement Surgery
+// - Hip Replacement Surgery
+// - Spine Surgery
+// - Fracture Fixation
+// - Arthroscopic Surgery
+// - Orthopedic Procedures
+
+// Geriatric Physiotherapy
+
+// Helping senior citizens maintain strength, mobility, balance, and independence through specialized rehabilitation programs.
+
+// Pediatric Physiotherapy
+
+// Specialized physiotherapy services for children with developmental, neurological, and musculoskeletal conditions.
+
+// Home Physiotherapy Services
+
+// Professional home physiotherapy and rehabilitation services for patients who require treatment in the comfort of their homes.

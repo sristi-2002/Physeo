@@ -12,24 +12,18 @@ import {
 } from "react-icons/fa";
 
 const Address = () => {
-  const gallery = [
-    "/images/gallery1.jpg",
-    "/images/gallery2.jpg",
-    "/images/gallery3.jpg",
-    "/images/gallery4.jpg",
-    "/images/gallery5.jpg",
-    "/images/gallery6.jpg",
-  ];
-
   return (
     <footer className="footer">
-      <div className="gallery-row">
-        {gallery.map((img, index) => (
-          <Reveal direction="zoom" delay={index * 80} key={index}>
-            <img src={img} alt="" />
-          </Reveal>
-        ))}
-      </div>
+      <Reveal direction="zoom" className="footer-banner">
+        <img
+          src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1920&q=80"
+          alt="Addlife Physiocare — physiotherapy and rehabilitation"
+        />
+        <div className="footer-banner-overlay">
+          <h3>We Keep You Moving</h3>
+          <p>Advanced Physiotherapy, Rehabilitation &amp; Pain Management</p>
+        </div>
+      </Reveal>
 
       <div className="footer-content">
         <Reveal direction="up" className="footer-column">

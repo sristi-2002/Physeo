@@ -1,135 +1,128 @@
-import React from "react";
 import "./Features.css";
 import Reveal from "../Reveal/Reveal";
 
-const progressData = [
-  { title: "Evidence-Based Physiotherapy", value: 95 },
-  { title: "Personalized Treatment Plans", value: 92 },
-  { title: "Patient-Centered Care", value: 90 },
+/**
+ * "Why Choose Us" — circular layout using all of Promise's content.
+ * The 9 highlights orbit the center circle in TWO layers (inner ring of 4,
+ * outer ring of 5) spinning in opposite directions. Each card counter-
+ * rotates to stay upright, fades in with a stagger, and glows on hover.
+ */
+/* calm medical palette — teals, blues and healing greens only */
+const highlights = [
+  { icon: "👨‍⚕️", text: "Expert Physiotherapy Care", color: "#2ac5d6" },
+  { icon: "📋", text: "Personalized Rehabilitation Programs", color: "#1976d2" },
+  { icon: "💊", text: "Advanced Pain Management Solutions", color: "#00a39a" },
+  { icon: "🦴", text: "Spine & Musculoskeletal Rehabilitation", color: "#2e8b9e" },
+  { icon: "🏃", text: "Sports Injury Recovery", color: "#2e7d6b" },
+  { icon: "🧠", text: "Neurological Rehabilitation", color: "#0d8abc" },
+  { icon: "🏠", text: "Home Physiotherapy Services", color: "#17a589" },
+  { icon: "🔬", text: "Evidence-Based Treatment Approach", color: "#3b7ea1" },
+  { icon: "❤️", text: "Compassionate Patient Care", color: "#138086" },
 ];
 
-const steps = [
-  { step: "Step 1", title: "Book Your Consultation", className: "step1" },
-  { step: "Step 2", title: "Initial Health Consultation", className: "step2" },
-  { step: "Step 3", title: "Full Body Assessment", className: "step3" },
-  {
-    step: "Step 4",
-    title: "Customized Treatment Plan",
-    className: "step4",
-    active: true,
-  },
-  { step: "Step 5", title: "Hands-On Therapy", className: "step5" },
-  { step: "Step 6", title: "Progress & Recovery", className: "step6" },
-];
+const innerCards = highlights.slice(0, 4);
+const outerCards = highlights.slice(4);
+
+function OrbitCard({ item, index, angle }) {
+  return (
+    <div className="orbit-item" style={{ "--angle": `${angle}deg` }}>
+      <div className="orbit-spin">
+        <div
+          className="orbit-card"
+          style={{ "--c": item.color, animationDelay: `${index * 120}ms` }}
+        >
+          <span className="orbit-card-icon">{item.icon}</span>
+          <p>{item.text}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const Features = () => {
   return (
     <section className="features">
-      {/* TOP SECTION */}
-      <div className="features-top">
-        <Reveal direction="left" className="features-images">
-          <div className="img-grid">
-            <img
-              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=900&q=80"
-              alt="Physiotherapy"
-              className="main-img"
-            />
-
-            <img
-              src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&w=900&q=80"
-              alt="Therapy"
-              className="main-img"
-            />
-
-            <img
-              src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?auto=format&fit=crop&w=600&q=80"
-              alt="Consultation"
-              className="small-img"
-            />
-          </div>
-
-          <div className="partners">
-            <span>BEGONIA</span>
-            <span>CUTING</span>
-            <span>PETA</span>
-            <span>PRAD</span>
-          </div>
+      <div className="features-head">
+        <Reveal className="features-tag">
+          <span></span>
+          WHY CHOOSE ADDLIFE PHYSIOCARE?
         </Reveal>
 
-        <Reveal direction="right" delay={120} className="features-content">
-          <p className="subtitle">WHY CHOOSE US</p>
-
-          <h2>
-            Why Choose <span>Addlife Physiocare</span>
-          </h2>
-
-          <p className="description">
-            Experienced physiotherapists, customized rehabilitation programs,
-            and scientifically proven techniques. Our holistic approach focuses
-            on pain relief, movement restoration, injury prevention, and
-            long-term wellness.
-          </p>
-
-          {progressData.map((item, index) => (
-            <div className="progress-item" key={index}>
-              <div className="progress-header">
-                <span>{item.title}</span>
-                <span>{item.value}%</span>
-              </div>
-
-              <div className="progress-bar">
-                <div style={{ width: `${item.value}%` }}></div>
-              </div>
-            </div>
-          ))}
-
-          <button className="btn-primary">
-            Book This Service →
-          </button>
+        <Reveal as="h2" delay={80}>
+          Everything You Need To <span>Move Better</span>
         </Reveal>
       </div>
 
-      {/* BOTTOM SECTION */}
-      <div className="recovery-section">
-        <Reveal as="p" className="subtitle">TRUSTED CARE</Reveal>
+      <div className="orbit-stage">
+        {/* colorful spinning glow + ring layers + pulse */}
+        <div className="orbit-glow"></div>
+        <div className="orbit-rings"></div>
+        <div className="orbit-dashed"></div>
+        <div className="orbit-pulse"></div>
 
-        <Reveal as="h2" delay={80}>
-          How It <span>Works</span> Your Path <br />
-          To Recovery
-        </Reveal>
-
-        <div className="recovery-container">
-          <div className="circle-bg"></div>
-
-          <div className="center-image">
-            <img
-              src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80"
-              alt="Recovery Process"
-            />
+        {/* static center circle */}
+        <div className="orbit-center">
+          <img
+            src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80"
+            alt="Addlife Physiocare"
+          />
+          <div className="orbit-center-overlay">
+            <strong>Addlife Physiocare</strong>
+            <em>We Keep You Moving.</em>
           </div>
+        </div>
 
-          {steps.map((item, index) => (
-            <div className={`step ${item.className}`} key={index}>
-              <span>{item.step}</span>
-
-              <button className={item.active ? "active" : ""}>
-                {item.title}
-              </button>
-
-              {item.active && (
-                <div className="step-card">
-                  Receive a personalized treatment plan designed to target
-                  your condition, speed recovery, and improve mobility.
-                </div>
-              )}
-            </div>
+        {/* outer ring — 5 cards */}
+        <div className="orbit-rotor outer">
+          {outerCards.map((item, index) => (
+            <OrbitCard
+              key={index}
+              item={item}
+              index={index + 4}
+              angle={(360 / outerCards.length) * index}
+            />
           ))}
         </div>
 
-        <button className="btn-primary bottom-btn">
-          Book This Service →
-        </button>
+        {/* inner ring — 4 cards */}
+        <div className="orbit-rotor inner">
+          {innerCards.map((item, index) => (
+            <OrbitCard
+              key={index}
+              item={item}
+              index={index}
+              angle={(360 / innerCards.length) * index + 45}
+            />
+          ))}
+        </div>
       </div>
+
+      {/* stacked fallback for small screens */}
+      <div className="orbit-list">
+        {highlights.map((item, index) => (
+          <Reveal
+            key={index}
+            direction="up"
+            delay={(index % 3) * 80}
+            className="orbit-list-item"
+          >
+            <span className="orbit-card-icon">{item.icon}</span>
+            {item.text}
+          </Reveal>
+        ))}
+      </div>
+
+      <Reveal direction="zoom" delay={120} className="features-banner">
+        <span className="features-banner-label">OUR PROMISE</span>
+        <h3>
+          Relieving Pain. <span>Restoring Function.</span> Rebuilding
+          Confidence.
+        </h3>
+        <div className="features-brand">
+          <strong>Addlife Physiocare</strong>
+          <em>We Keep You Moving.</em>
+        </div>
+      </Reveal>
     </section>
   );
 };
