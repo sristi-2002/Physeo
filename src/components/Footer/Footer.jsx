@@ -11,17 +11,38 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
+/* real physiotherapy / rehabilitation photos from Unsplash, square-cropped */
+const IMG = (id) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=400&h=400&q=80`;
+
+// from unsplash.com/s/photos/physiotherapy (verified loading, all distinct)
+const footerImages = [
+  IMG("photo-1645005512968-0c1fe99f0093"),
+  IMG("photo-1519823551278-64ac92734fb1"),
+  IMG("photo-1649751361457-01d3a696c7e6"),
+  IMG("photo-1706353399656-210cca727a33"),
+  IMG("photo-1586401100295-7a8096fd231a"),
+  IMG("photo-1540205895360-4ad4cffb3aa8"),
+  IMG("photo-1519824145371-296894a0daa9"),
+];
+
 const Address = () => {
   return (
     <footer className="footer">
-      <Reveal direction="zoom" className="footer-banner">
-        <img
-          src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1920&q=80"
-          alt="Addlife Physiocare — physiotherapy and rehabilitation"
-        />
-        <div className="footer-banner-overlay">
+      <Reveal direction="zoom" className="footer-gallery">
+        <div className="footer-gallery-head">
           <h3>We Keep You Moving</h3>
           <p>Advanced Physiotherapy, Rehabilitation &amp; Pain Management</p>
+        </div>
+
+        <div className="footer-strip">
+          <div className="footer-strip-track">
+            {[...footerImages, ...footerImages].map((src, i) => (
+              <div className="footer-square" key={i}>
+                <img src={src} alt="Addlife Physiocare" loading="lazy" />
+              </div>
+            ))}
+          </div>
         </div>
       </Reveal>
 
@@ -47,17 +68,17 @@ const Address = () => {
 
           <p>
             <FaMapMarkerAlt />
-            Salt Lake Sector III, Kolkata, West Bengal
+            KB 25, Salt Lake City, Sector III, Kolkata - 700106
           </p>
 
           <p>
             <FaPhoneAlt />
-            +91 891 047 7963
+            +91 77970 44666
           </p>
 
           <p>
             <FaEnvelope />
-            info@addlifephysiocare.com
+            info@addlifephysiocare.in
           </p>
         </Reveal>
 

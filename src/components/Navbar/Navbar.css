@@ -7,12 +7,15 @@
 }
 
 .navbar {
-  width: 82%;
-  height: 58px;
+  width: 88%;
+  max-width: 1400px;
+  height: 62px;
 
   margin: 0 auto;
 
-  background: #fff;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(42, 183, 197, 0.12);
 
   border-radius: 40px;
 
@@ -20,49 +23,136 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 12px 0 20px;
+  padding: 0 10px 0 18px;
+  box-shadow: 0 14px 40px rgba(24, 61, 64, 0.1);
 }
 
+/* ---------- One-by-one entrance animation ---------- */
+.nav-anim {
+  opacity: 0;
+  transform: translateY(-14px);
+  animation: navDrop 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes navDrop {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Logo wordmark ---------- */
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  text-decoration: none;
 }
 
-.logo img {
-  width: 34px;
-  height: 34px;
+.logo-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2ab7c5, #163f46);
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+
+  box-shadow: 0 6px 14px rgba(42, 183, 197, 0.35);
+  animation: logoPulse 3.2s ease-in-out infinite;
 }
 
-.logo h2 {
+@keyframes logoPulse {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(-6deg) scale(1.06);
+  }
+}
+
+.logo-text {
   margin: 0;
-
-  font-size: 20px;
-  font-weight: 500;
-
-  color: #2ab7c5;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
 }
 
+.logo-add {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  background: linear-gradient(90deg, #2ab7c5, #0f8a99);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo-physio {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #163f46;
+  margin-top: 1px;
+}
+
+/* ---------- Menu ---------- */
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 38px;
+  gap: 26px;
 
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.nav-menu li {
+.nav-menu li a {
+  position: relative;
+  text-decoration: none;
+  color: #3a4a4c;
   font-size: 14px;
-  color: #444;
-  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
+.nav-menu li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: #2ab7c5;
+  transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover {
+  color: #2ab7c5;
+}
+
+.nav-menu li a:hover::after {
+  width: 100%;
+}
+
+.nav-menu li.active a {
+  color: #2ab7c5;
+}
+
+/* ---------- CTA ---------- */
 .appointment-btn {
-  height: 42px;
+  height: 44px;
 
   border: none;
+  text-decoration: none;
 
   background: #2ab7c5;
   color: white;
@@ -77,43 +167,51 @@
   padding-right: 4px;
 
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.appointment-btn:hover {
+  background: #163f46;
+  transform: translateY(-2px);
 }
 
 .arrow-circle {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
 
   border-radius: 50%;
 
   background: #163f46;
+  color: #fff;
 
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.nav-links a {
-  text-decoration: none;
-  color: #1f2937; /* dark grey */
-  font-size: 18px;
-  font-weight: 500;
-  transition: 0.3s;
+  transition: transform 0.3s;
 }
 
-.nav-links a:hover {
-  color: #22c7d8;
-}
-.nav-menu li a {
-  text-decoration: none;
-  color: #444;
-  font-size: 14px;
-  transition: 0.3s;
+.appointment-btn:hover .arrow-circle {
+  transform: rotate(45deg);
+  background: #2ab7c5;
 }
 
-.nav-menu li a:hover {
-  color: #2ab7c5;
+/* ---------- Responsive ---------- */
+@media (max-width: 1150px) {
+  .nav-menu {
+    gap: 18px;
+  }
+  .nav-menu li a {
+    font-size: 13px;
+  }
 }
 
-.nav-menu li.active a {
-  color: #2ab7c5;
+@media (max-width: 960px) {
+  .nav-menu {
+    display: none;
+  }
+  .navbar {
+    width: 92%;
+  }
 }

@@ -5,6 +5,7 @@ import Features from "../components/Features/Features";
 import About from "../components/About/About";
 import Services from "../components/Services/Services";
 import Conditions from "../components/Conditions/Conditions";
+import Gallery from "../components/Gallery/Gallery";
 import Techniques from "../components/Techniques/Techniques";
 import WhyChoose from "../components/WhyChoose/WhyChoose";
 // import Promise from "../components/Promise/Promise";
@@ -44,6 +45,10 @@ function Home() {
 
       <section id="conditions">
         <Conditions />
+      </section>
+
+      <section id="gallery">
+        <Gallery />
       </section>
 
       <section id="techniques">

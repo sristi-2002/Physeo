@@ -1,0 +1,143 @@
+.gallery {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #eef6f0 100%);
+  padding: 100px 0 110px;
+  overflow: hidden;
+
+  margin-top: -90px;
+  z-index: 14;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 0 90px;
+  position: relative;
+  z-index: 2;
+}
+
+.gallery-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #2ac5d6;
+  margin-bottom: 16px;
+}
+
+.gallery-tag-line {
+  width: 70px;
+  height: 2px;
+  background: #2ac5d6;
+  flex-shrink: 0;
+}
+
+.gallery-tag p {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.gallery-h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 54px;
+  font-weight: 500;
+  color: #f4fbfb;
+  line-height: 1.1;
+}
+
+.gallery-h2 .plain .char {
+  color: #f4fbfb;
+}
+
+.gallery-h2 .hl .char {
+  background: linear-gradient(90deg, #2ac5d6 0%, #7df0f7 50%, #2ac5d6 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* trigger the looping letter reveal once the heading scrolls in */
+.gallery-tag.is-visible .char,
+.gallery-h2.is-visible .plain .char {
+  animation: lettersLoop 6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.gallery-h2.is-visible .hl .char {
+  animation: lettersLoop 6s cubic-bezier(0.22, 1, 0.36, 1) infinite,
+    lettersShimmer 5s linear infinite;
+}
+
+/* ---- horizontal auto-scrolling strip ---- */
+/* dark band (same dark teal used in the Services / Techniques sections) that
+   the image cards scroll across, sitting inside the white gallery section */
+.gallery-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0c2d2f 0%, #12393b 100%);
+  padding: 30px 0;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  padding: 8px 8px;
+  animation: galleryScroll 60s linear infinite;
+}
+
+/* pause when the user hovers so they can look */
+.gallery-viewport:hover .gallery-track {
+  animation-play-state: paused;
+}
+
+@keyframes galleryScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* exactly one full set (track holds 2 copies, gap included) */
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+
+/* clean filmstrip cards (marquee-like): uniform height, light chrome */
+.gallery-card {
+  flex: 0 0 auto;
+  height: 300px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(12, 38, 40, 0.28);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-card img {
+  display: block;
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+}
+
+.gallery-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 980px) {
+  .gallery {
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+  }
+  .gallery-header {
+    padding: 0 24px;
+  }
+  .gallery-h2 {
+    font-size: 38px;
+  }
+  .gallery-card {
+    height: 260px;
+  }
+}

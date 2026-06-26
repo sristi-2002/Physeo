@@ -63,7 +63,7 @@ const Features = () => {
         {/* static center circle */}
         <div className="orbit-center">
           <img
-            src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80"
+            src="https://images.unsplash.com/photo-1645005512914-c053ce912e43?auto=format&fit=crop&w=1200&q=80"
             alt="Addlife Physiocare"
           />
           <div className="orbit-center-overlay">

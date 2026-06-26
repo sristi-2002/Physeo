@@ -10,20 +10,79 @@ import Reveal from "../Reveal/Reveal";
  * Clicking a card revolves it; opening one closes any previously open card.
  *
  * Videos are short, service-specific physiotherapy clips from Pexels
- * (free, no attribution required), served as light ~960p MP4s. The matching
- * `poster` image shows while a clip loads, so nothing looks broken.
+ * (free, no attribution required). Each clip was picked to match its own
+ * service — e.g. Sports shows ankle taping, Neuro shows assisted limb
+ * movement, Pediatric shows a child exercising, Home shows in-home care.
+ * The matching `poster` image shows while a clip loads, so nothing looks broken.
  * To use the clinic's own clips, drop files in `public/videos/` and point
  * each `video:` to e.g. "/videos/orthopedic.mp4" (see public/videos/README.txt).
  */
+/**
+ * Splits a string into per-letter <span> elements so each character can be
+ * animated in one-by-one (the entrance animation lives in Services.css and is
+ * triggered by a visibility/flip class on an ancestor). `base` offsets the
+ * stagger start; `step` is the delay added per letter.
+ */
+function Letters({ text, base = 0, step = 24 }) {
+  return [...text].map((ch, i) => (
+    <span
+      key={i}
+      className="char"
+      style={{ animationDelay: `${base + i * step}ms` }}
+    >
+      {ch === " " ? " " : ch}
+    </span>
+  ));
+}
+
+/** The section heading, split letter-by-letter while keeping the gradient
+ *  highlight on "Solution" and "Pain Relief". A single running counter keeps
+ *  the stagger continuous across the normal and highlighted segments. */
+function SplitHeading({ step = 18 }) {
+  const parts = [
+    { t: "Comprehensive Physiotherapy " },
+    { t: "Solution", hl: true },
+    { br: true },
+    { t: "For " },
+    { t: "Pain Relief", hl: true },
+    { t: " And Recovery" },
+  ];
+  let n = 0;
+  return (
+    <h2 className="split-h2">
+      {parts.map((p, pi) => {
+        if (p.br) return <br key={pi} />;
+        const letters = [...p.t].map((ch, ci) => {
+          const delay = n++ * step;
+          return (
+            <span
+              key={ci}
+              className="char"
+              style={{ animationDelay: `${delay}ms` }}
+            >
+              {ch === " " ? " " : ch}
+            </span>
+          );
+        });
+        return (
+          <span key={pi} className={p.hl ? "hl" : "plain"}>
+            {letters}
+          </span>
+        );
+      })}
+    </h2>
+  );
+}
+
 const categories = [
   {
     icon: "🦴",
     title: "Orthopedic Physiotherapy",
     intro: "Specialized treatment for:",
     video:
-      "https://videos.pexels.com/video-files/6095386/6095386-sd_960_540_30fps.mp4",
+      "https://videos.pexels.com/video-files/14936271/14936271-sd_640_360_25fps.mp4",
     poster:
-      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800",
+      "https://images.unsplash.com/photo-1648638810948-f3bf2cccdde9?w=800",
     items: [
       "Back Pain",
       "Neck Pain",
@@ -45,9 +104,9 @@ const categories = [
     title: "Sports Injury Rehabilitation",
     intro: "Helping athletes recover safely from:",
     video:
-      "https://videos.pexels.com/video-files/6023220/6023220-sd_960_540_25fps.mp4",
+      "https://videos.pexels.com/video-files/7986040/7986040-sd_540_960_30fps.mp4",
     poster:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800",
+      "https://images.unsplash.com/photo-1522898467493-49726bf28798?w=800",
     items: [
       "Sports Injuries",
       "ACL Injuries",
@@ -64,9 +123,9 @@ const categories = [
     title: "Neurological Physiotherapy",
     intro: "Comprehensive neuro rehabilitation for:",
     video:
-      "https://videos.pexels.com/video-files/6111018/6111018-sd_960_540_25fps.mp4",
+      "https://videos.pexels.com/video-files/6111034/6111034-sd_640_360_25fps.mp4",
     poster:
-      "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800",
+      "https://images.unsplash.com/photo-1699523229199-fce5aa6b0ec3?w=800",
     items: [
       "Stroke Rehabilitation",
       "Stroke Recovery Physiotherapy",
@@ -86,7 +145,7 @@ const categories = [
     video:
       "https://videos.pexels.com/video-files/6629664/6629664-sd_960_506_25fps.mp4",
     poster:
-      "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=800",
+      "https://images.unsplash.com/photo-1668422550557-f096364b72b4?w=800",
     items: [
       "Manual Therapy",
       "Spinal Mobilization",
@@ -103,9 +162,9 @@ const categories = [
     title: "Post-Surgical Rehabilitation",
     intro: "Supporting recovery after:",
     video:
-      "https://videos.pexels.com/video-files/6111056/6111056-sd_960_540_25fps.mp4",
+      "https://videos.pexels.com/video-files/6111021/6111021-sd_640_360_25fps.mp4",
     poster:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800",
+      "https://images.unsplash.com/photo-1645005513713-9e2b92a687d3?w=800",
     items: [
       "Knee Replacement Surgery",
       "Hip Replacement Surgery",
@@ -120,9 +179,9 @@ const categories = [
     title: "Ankylosing Spondylitis",
     intro: "Specialized rehabilitation focusing on:",
     video:
-      "https://videos.pexels.com/video-files/6023240/6023240-sd_960_540_25fps.mp4",
+      "https://videos.pexels.com/video-files/6111062/6111062-sd_640_360_25fps.mp4",
     poster:
-      "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800",
+      "https://images.unsplash.com/photo-1645005512942-a17817fb7c11?w=800",
     items: [
       "Pain Relief",
       "Spinal Mobility",
@@ -140,7 +199,7 @@ const categories = [
     video:
       "https://videos.pexels.com/video-files/6892073/6892073-sd_960_540_25fps.mp4",
     poster:
-      "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800",
+      "https://images.unsplash.com/photo-1756314354826-91d31d85634a?w=800",
     items: [
       "Balance Training",
       "Fall Prevention",
@@ -156,9 +215,9 @@ const categories = [
     title: "Pediatric Physiotherapy",
     intro: "Specialized care for children with:",
     video:
-      "https://videos.pexels.com/video-files/6111018/6111018-sd_960_540_25fps.mp4",
+      "https://videos.pexels.com/video-files/8160564/8160564-sd_540_960_25fps.mp4",
     poster:
-      "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800",
+      "https://images.unsplash.com/photo-1645005512964-5057008b4425?w=800",
     items: [
       "Developmental Conditions",
       "Neurological Conditions",
@@ -174,9 +233,9 @@ const categories = [
     title: "Home Physiotherapy Services",
     intro: "Professional rehabilitation at home:",
     video:
-      "https://videos.pexels.com/video-files/9058018/9058018-sd_960_540_25fps.mp4",
+      "https://videos.pexels.com/video-files/7517385/7517385-sd_640_360_25fps.mp4",
     poster:
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800",
+      "https://images.unsplash.com/photo-1709880754472-be89c13abc52?w=800",
     items: [
       "Bedside Rehabilitation",
       "Post-Surgical Care",
@@ -190,12 +249,10 @@ const categories = [
 ];
 
 function FlipCard({ cat, index, flipped, onOpen, onClose }) {
-  const words = cat.title.split(" ");
-
   return (
     <Reveal
       direction="up"
-      delay={(index % 4) * 90}
+      delay={(index % 4) * 50}
       className={`flip-card ${flipped ? "is-flipped" : ""}`}
     >
       <div className="flip-inner">
@@ -215,15 +272,7 @@ function FlipCard({ cat, index, flipped, onOpen, onClose }) {
           <div className="flip-front-overlay">
             <span className="flip-icon">{cat.icon}</span>
             <h3>
-              {words.map((w, i) => (
-                <span
-                  key={i}
-                  className="fw"
-                  style={{ animationDelay: `${i * 90}ms` }}
-                >
-                  {w}
-                </span>
-              ))}
+              <Letters text={cat.title} step={28} />
             </h3>
             <span className="flip-hint">
               <RotateCcw size={14} /> Tap to view specialties
@@ -234,15 +283,26 @@ function FlipCard({ cat, index, flipped, onOpen, onClose }) {
         {/* BACK — sub-categories */}
         <div className="flip-back">
           <div className="flip-back-tag">
-            OUR PHYSIOTHERAPY & REHABILITATION SERVICES
+            <Letters
+              text="OUR PHYSIOTHERAPY & REHABILITATION SERVICES"
+              base={60}
+              step={10}
+            />
           </div>
-          <h4>{cat.title}</h4>
-          <p className="flip-back-intro">{cat.intro}</p>
+          <h4>
+            <Letters text={cat.title} base={220} step={20} />
+          </h4>
+          <p className="flip-back-intro">
+            <Letters text={cat.intro} base={360} step={11} />
+          </p>
 
           <ul>
             {cat.items.map((item, i) => (
-              <li key={i} style={{ animationDelay: `${i * 60}ms` }}>
-                <Check size={14} /> {item}
+              <li key={i}>
+                <Check size={14} />
+                <span className="li-text">
+                  <Letters text={item} base={470 + i * 80} step={14} />
+                </span>
               </li>
             ))}
           </ul>
@@ -259,26 +319,49 @@ function FlipCard({ cat, index, flipped, onOpen, onClose }) {
 export default function Services() {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [activeDot, setActiveDot] = useState(0);
 
   const scrollBy = (dir) => {
     const el = scrollRef.current;
     if (el) el.scrollBy({ left: dir * 360, behavior: "smooth" });
   };
 
+  const scrollToCard = (i) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const card = el.children[i];
+    if (card)
+      el.scrollTo({ left: card.offsetLeft - el.offsetLeft, behavior: "smooth" });
+  };
+
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let closest = 0;
+    let min = Infinity;
+    Array.from(el.children).forEach((card, i) => {
+      const dist = Math.abs(card.offsetLeft - el.offsetLeft - el.scrollLeft);
+      if (dist < min) {
+        min = dist;
+        closest = i;
+      }
+    });
+    setActiveDot(closest);
+  };
+
   return (
     <section className="services">
       <div className="services-header">
         <Reveal className="section-tag">
-          <span></span>
-          PHYSIO CATEGORIES
+          <span className="tag-line"></span>
+          <span className="tag-text">
+            <Letters text="PHYSIO CATEGORIES" step={30} />
+          </span>
         </Reveal>
 
         <Reveal className="header-row" delay={80}>
-          <h2>
-            Comprehensive Physiotherapy <span>Solution</span>
-            <br />
-            For <span>Pain Relief</span> And Recovery
-          </h2>
+          <SplitHeading />
+
 
           <div className="scroll-controls">
             <button onClick={() => scrollBy(-1)} aria-label="Scroll left">
@@ -291,7 +374,7 @@ export default function Services() {
         </Reveal>
       </div>
 
-      <div className="cat-scroll" ref={scrollRef}>
+      <div className="cat-scroll" ref={scrollRef} onScroll={handleScroll}>
         {categories.map((cat, index) => (
           <FlipCard
             key={index}
@@ -300,6 +383,17 @@ export default function Services() {
             flipped={activeIndex === index}
             onOpen={() => setActiveIndex(index)}
             onClose={() => setActiveIndex(null)}
+          />
+        ))}
+      </div>
+
+      <div className="cat-dots">
+        {categories.map((_, i) => (
+          <button
+            key={i}
+            className={`cat-dot ${activeDot === i ? "is-active" : ""}`}
+            onClick={() => scrollToCard(i)}
+            aria-label={`Go to category ${i + 1}`}
           />
         ))}
       </div>

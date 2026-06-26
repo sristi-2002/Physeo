@@ -3,7 +3,7 @@
 .features {
   background: #eef4fb;
   text-align: center;
-  padding: 100px 5% 110px;
+  padding: 80px 5% 80px;
   overflow: hidden;
   font-family: "Inter", sans-serif;
 }
@@ -49,7 +49,10 @@
   width: 780px;
   height: 780px;
   max-width: 92vw;
-  margin: 20px auto 50px;
+  /* scale the whole orbit down and reclaim the empty band it leaves,
+     so the section is smaller without re-tuning every ring radius */
+  transform: scale(0.8);
+  margin: -55px auto -75px;
 }
 
 /* colorful conic glow spinning behind everything */

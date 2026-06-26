@@ -3,6 +3,7 @@ import "./Appointment.css";
 import { FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
 import { Sparkle, Calendar, ArrowUpRight } from "lucide-react";
 import Reveal from "../Reveal/Reveal";
+import Letters from "../Letters/Letters";
 
 const marqueeItems = [
   "Orthopedic Physiotherapy",
@@ -33,11 +34,21 @@ const Appointment = () => {
         <Reveal direction="left" className="appointment-left">
           <span className="section-subtitle">
             <span className="subtitle-line"></span>
-            WHY CHOOSE US SERVICES
+            <span className="subtitle-text">
+              <Letters text="WHY CHOOSE US SERVICES" step={28} />
+            </span>
           </span>
 
-          <h2>
-            Schedule <span>Your Visit</span> Now
+          <h2 className="appt-h2">
+            <span className="plain">
+              <Letters text="Schedule " step={22} />
+            </span>
+            <span className="hl">
+              <Letters text="Your Visit" base={200} step={22} />
+            </span>
+            <span className="plain">
+              <Letters text=" Now" base={440} step={22} />
+            </span>
           </h2>
 
           <p>We're Dedicated To Providing More Than Just Treatment</p>
@@ -129,7 +140,7 @@ const Appointment = () => {
 
       <Reveal direction="up" delay={100} className="appointment-image">
         <img
-          src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80"
+          src="https://images.unsplash.com/photo-1645005513751-e22717a66ae6?auto=format&fit=crop&w=1600&q=80"
           alt="Physiotherapy session at Addlife Physiocare"
         />
       </Reveal>

@@ -1,0 +1,37 @@
+/* Shared per-letter animation primitives (used via the <Letters/> component).
+   A consuming section triggers the loop with a selector like
+   `.my-block.is-visible .char { animation: lettersLoop 6s ... infinite; }`. */
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* type in → hold → fade out → repeat every 6s. Because every letter shares the
+   same duration but carries its own animation-delay, the 1-by-1 stagger is
+   preserved on EVERY cycle, and being `infinite` it never stops on idle. */
+@keyframes lettersLoop {
+  0% {
+    opacity: 0;
+    transform: translateY(0.5em) rotateX(-55deg);
+  }
+  8% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0.5em) rotateX(-55deg);
+  }
+}
+
+@keyframes lettersShimmer {
+  to {
+    background-position: 220% center;
+  }
+}

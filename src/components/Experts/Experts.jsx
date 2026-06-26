@@ -72,11 +72,11 @@ export default function Experts() {
         ))}
       </div>
 
-      <div className="slider-dots">
+      {/* <div className="slider-dots">
         <span></span>
         <span className="active"></span>
         <span></span>
-      </div>
+      </div> */}
     </section>
   );
 }

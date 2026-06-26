@@ -6,7 +6,7 @@ import Reveal from "../Reveal/Reveal";
 /* Same background image for every review — only the review text changes.
    Reviews are placeholders; replace with the clinic's real testimonials. */
 const TESTI_IMAGE =
-  "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1920&q=80";
+  "https://images.unsplash.com/photo-1645005513709-77336f075dc8?auto=format&fit=crop&w=1920&q=80";
 
 const reviews = [
   {

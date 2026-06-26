@@ -1,99 +1,143 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap");
 
 .techniques {
+  position: relative;
+  z-index: 15;
   background: linear-gradient(180deg, #0c2d2f 0%, #12393b 100%);
-  padding: 110px 90px;
+  padding: 100px 90px;
+  margin-top: -90px;
+  border-top-left-radius: 90px;
+  border-top-right-radius: 90px;
 }
 
 .techniques-header {
   text-align: center;
-  margin-bottom: 55px;
+  margin-bottom: 50px;
 }
 
 .section-title-tech {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
-.section-title-tech span {
+.section-title-tech .tech-line {
   width: 70px;
   height: 2px;
   background: #2ac5d6;
+  flex-shrink: 0;
 }
 
 .section-title-tech p {
   font-size: 12px;
   letter-spacing: 1.5px;
-  color: rgba(255, 255, 255, 0.75);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.78);
 }
 
-.techniques-header h2 {
+.tech-h2 {
   font-family: "Cormorant Garamond", serif;
-  font-size: 56px;
+  font-size: 54px;
   font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.tech-h2 .plain .char {
   color: #fff;
 }
 
-.techniques-header h2 span {
-  color: #2ac5d6;
+.tech-h2 .hl .char {
+  background: linear-gradient(90deg, #2ac5d6 0%, #7df0f7 50%, #2ac5d6 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-style: italic;
+}
+
+/* looping letter reveal once the relevant block scrolls in */
+.section-title-tech.is-visible .char,
+.tech-h2.is-visible .plain .char,
+.technique-card.is-visible h4 .char {
+  animation: lettersLoop 6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.tech-h2.is-visible .hl .char {
+  animation: lettersLoop 6s cubic-bezier(0.22, 1, 0.36, 1) infinite,
+    lettersShimmer 5s linear infinite;
 }
 
 .techniques-sub {
   max-width: 600px;
-  margin: 18px auto 0;
+  margin: 16px auto 0;
   color: rgba(255, 255, 255, 0.7);
   font-size: 15px;
   line-height: 1.8;
 }
 
+/* ---- services grid (all 12 services) ---- */
 .techniques-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  max-width: 1200px;
+  gap: 18px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
 .technique-card {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 22px;
-  padding: 34px 26px;
+  border-radius: 18px;
+  padding: 26px 16px;
   text-align: center;
   transition: transform 0.4s ease, box-shadow 0.4s ease,
     background 0.4s ease, border-color 0.4s ease;
 }
 
 .technique-card.is-visible:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.35);
+  transform: translateY(-7px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(42, 197, 214, 0.3);
   background: #2ac5d6;
   border-color: #2ac5d6;
 }
 
+/* icon on a white circular badge with a gentle float */
 .technique-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 18px;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 14px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
-  transition: background 0.4s ease, transform 0.4s ease;
+  font-size: 26px;
+  animation: techFloat 3.6s ease-in-out infinite;
+  transition: transform 0.4s ease;
+}
+
+@keyframes techFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 .technique-card.is-visible:hover .technique-icon {
-  background: #fff;
+  animation: none;
   transform: scale(1.12);
 }
 
 .technique-card h4 {
   font-family: "Cormorant Garamond", serif;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 600;
   color: #fff;
   transition: color 0.4s ease;
@@ -112,11 +156,13 @@
 @media (max-width: 720px) {
   .techniques {
     padding: 70px 22px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
   }
   .techniques-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .techniques-header h2 {
-    font-size: 40px;
+  .tech-h2 {
+    font-size: 38px;
   }
 }

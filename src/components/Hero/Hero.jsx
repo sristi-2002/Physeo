@@ -58,8 +58,8 @@ export default function Hero() {
   Clinic In Salt Lake Sector III, Kolkata.
 </p>
 <div className="hero-buttons animate-buttons">
-  <button className="email-btn">info@addlifephysiocare.com</button>
-  <button className="phone-btn">+91 891 047 7963</button>
+  <button className="email-btn">addlifephysiocare@gmail.com</button>
+  <button className="phone-btn">+91-779-704-4666</button>
 </div>
       </div>
     </section>

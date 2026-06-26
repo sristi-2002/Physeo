@@ -41,8 +41,29 @@
   line-height: 1.1;
 }
 
-.wc-head h2 span {
-  color: #2ac5d6;
+.wc-h2 .plain .char {
+  color: #fff;
+}
+
+.wc-h2 .hl .char {
+  background: linear-gradient(90deg, #2ac5d6 0%, #7df0f7 50%, #2ac5d6 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-style: italic;
+}
+
+/* looping letter reveal once the header / each row scrolls in */
+.wc-head.is-visible .wc-tag .char,
+.wc-head.is-visible .wc-h2 .plain .char,
+.wc-item-wrap.is-visible .wc-row h3 .char {
+  animation: lettersLoop 6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.wc-head.is-visible .wc-h2 .hl .char {
+  animation: lettersLoop 6s cubic-bezier(0.22, 1, 0.36, 1) infinite,
+    lettersShimmer 5s linear infinite;
 }
 
 .wc-viewall {
@@ -209,15 +230,16 @@
 
 .wc-media img {
   width: 100%;
-  height: 420px;
-  object-fit: cover;
+  height: 360px;
+  /* show the whole photo (zoomed out) instead of a tight crop */
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.25);
   border-radius: 20px;
 }
 
 /* image animates in, then slow ken-burns zoom while open */
 .wc-item.open .wc-media img {
-  animation: wc-img-in 0.7s ease both,
-    wc-kenburns 12s ease-in-out 0.7s infinite alternate;
+  animation: wc-img-in 0.7s ease both;
 }
 
 @keyframes wc-img-in {

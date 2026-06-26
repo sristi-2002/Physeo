@@ -2,6 +2,7 @@ import "./WhyChoose.css";
 import { useState } from "react";
 import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
 import Reveal from "../Reveal/Reveal";
+import Letters from "../Letters/Letters";
 
 /**
  * "Why Patients Trust Us" — expandable accordion list.
@@ -14,40 +15,40 @@ const reasons = [
     title: "Experienced Physiotherapists",
     desc: "Highly skilled professionals committed to delivering exceptional patient care.",
     image:
-      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1709880754445-8ffbd7e6ab3a?auto=format&fit=crop&w=1400&q=80",
   },
   {
     icon: "📋",
     title: "Personalized Treatment Plans",
     desc: "Customized rehabilitation programs designed according to individual needs and recovery goals.",
     image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1663053822692-f036a147593c?auto=format&fit=crop&w=1400&q=80",
   },
   {
     icon: "🔬",
     title: "Evidence-Based Physiotherapy",
     desc: "Scientifically proven treatment techniques that ensure safe and effective outcomes.",
     image:
-      "https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1709880754441-f254e7a7035c?auto=format&fit=crop&w=1400&q=80",
   },
   {
     icon: "🌿",
     title: "Holistic Rehabilitation Approach",
     desc: "Focused on pain relief, movement restoration, injury prevention, and long-term wellness.",
     image:
-      "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1746806942507-a7e93fdd6dd4?auto=format&fit=crop&w=1400&q=80",
   },
   {
     icon: "❤️",
     title: "Patient-Centered Care",
     desc: "Compassionate support throughout every stage of recovery.",
     image:
-      "https://images.unsplash.com/photo-1584516150909-c43483ee7932?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1709880754438-b1fb5d2f074c?auto=format&fit=crop&w=1400&q=80",
   },
 ];
 
 export default function WhyChoose() {
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
 
   return (
     <section className="why-choose">
@@ -55,10 +56,17 @@ export default function WhyChoose() {
         <div className="wc-head-left">
           <span className="wc-tag">
             <span className="wc-tag-line"></span>
-            TRUSTED CARE
+            <span className="wc-tag-text">
+              <Letters text="TRUSTED CARE" step={30} />
+            </span>
           </span>
-          <h2>
-            Why Patients <span>Trust Us</span>
+          <h2 className="wc-h2">
+            <span className="plain">
+              <Letters text="Why Patients " step={20} />
+            </span>
+            <span className="hl">
+              <Letters text="Trust Us" base={260} step={20} />
+            </span>
           </h2>
         </div>
 
@@ -83,7 +91,9 @@ export default function WhyChoose() {
               >
                 <div className="wc-row">
                   <span className="wc-icon">{item.icon}</span>
-                  <h3>{item.title}</h3>
+                  <h3>
+                    <Letters text={item.title} step={26} />
+                  </h3>
                   <p>{item.desc}</p>
                   <span className="wc-arrow">
                     {isOpen ? (
