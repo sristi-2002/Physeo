@@ -1,5 +1,6 @@
 import "./Hero.css";
 import { useEffect, useState } from "react";
+import { Mail, Phone } from "lucide-react";
 
 const words = [
   { text: "We", color: "white" },
@@ -57,9 +58,13 @@ export default function Hero() {
 <p key={`text2-${key}`} className="hero-text typing-line2">
   Clinic In Salt Lake Sector III, Kolkata.
 </p>
-<div className="hero-buttons animate-buttons">
-  <button className="email-btn">addlifephysiocare@gmail.com</button>
-  <button className="phone-btn">+91-779-704-4666</button>
+<div key={`btns-${key}`} className="hero-buttons animate-buttons">
+  <a href="mailto:addlifephysiocare@gmail.com" className="email-btn">
+    <Mail size={16} /> addlifephysiocare@gmail.com
+  </a>
+  <a href="tel:+917797044666" className="phone-btn">
+    <Phone size={16} /> +91 7797044666
+  </a>
 </div>
       </div>
     </section>

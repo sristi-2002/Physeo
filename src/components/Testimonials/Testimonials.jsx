@@ -8,42 +8,59 @@ import Reveal from "../Reveal/Reveal";
 const TESTI_IMAGE =
   "https://images.unsplash.com/photo-1645005513709-77336f075dc8?auto=format&fit=crop&w=1920&q=80";
 
+/* Real Google reviews for Addlife Physiocare (Salt Lake, Kolkata). */
 const reviews = [
   {
-    before: "After my knee surgery, I was worried about walking again. The personalized care and ",
-    highlight: "motivation I received here",
-    after: " made all the difference. I'm now back to hiking every weekend!",
-    name: "Jordan Lee",
-    location: "Denver, Colorado",
-    rating: 4,
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    before: "Years of chronic back pain left me hopeless until I found this clinic. The ",
-    highlight: "expert hands-on therapy",
-    after: " gave me my life back — I'm finally pain-free and active again!",
-    name: "Soumen Das",
+    before:
+      "Dr. Kousik Mallick sir is an exceptionally skilled and knowledgeable physiotherapist with deep expertise in ",
+    highlight: "sports rehabilitation and TKR recovery",
+    after: ". An excellent experience from start to finish.",
+    name: "Sourav Mitra",
     location: "Salt Lake, Kolkata",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/men/65.jpg",
   },
   {
-    before: "Recovering from a stroke felt impossible, but the ",
-    highlight: "compassionate neuro-rehab team",
-    after: " guided my father every step of the way. His mobility has improved remarkably.",
-    name: "Ananya Roy",
-    location: "New Town, Kolkata",
+    before:
+      "As the Head Coach of Star Badminton Academy, I'm extremely happy with our association. Their ",
+    highlight: "work with our athletes has been outstanding",
+    after: " — dedicated sports rehabilitation and injury management.",
+    name: "Kaushik Pal",
+    location: "Head Coach, Star Badminton Academy",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
   },
   {
-    before: "My frozen shoulder limited everything I did. Thanks to their ",
-    highlight: "customized treatment plan",
-    after: " I regained full movement within just a few weeks. Highly recommended!",
-    name: "Priya Sharma",
-    location: "Salt Lake Sector III, Kolkata",
+    before:
+      "As a professional badminton player, after my ACL and Meniscus surgery they were fantastic in helping me ",
+    highlight: "regain mobility — skilled, patient and encouraging",
+    after: ". I'm now completely pain-free and back on court.",
+    name: "Subhodeep Mondal",
+    location: "Kolkata",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+  },
+  {
+    before: "Amazing physiotherapist! They helped me recover from ",
+    highlight: "ACL surgery with personalized exercises and care",
+    after: ". Very professional and supportive throughout the process.",
+    name: "Muskan Jahangir",
+    location: "Kolkata",
+    rating: 5,
+  },
+  {
+    before:
+      "I've been an Ankylosing Spondylitis patient for 30 years. After treatment here, my ",
+    highlight: "body mobility improved remarkably",
+    after: " when nothing else had worked. Truly grateful for the care.",
+    name: "Amit Banerjee",
+    location: "Kolkata",
+    rating: 5,
+  },
+  {
+    before: "I had a very good experience at this clinic. The therapist is ",
+    highlight: "highly professional and explains every exercise clearly",
+    after: ". Clean, well-maintained and a calm, comfortable environment.",
+    name: "Mamoni Begam",
+    location: "Salt Lake, Kolkata",
+    rating: 5,
   },
 ];
 
@@ -83,7 +100,9 @@ const Testimonials = () => {
           </div>
 
           <div className="testi-user">
-            <img src={r.avatar} alt={r.name} />
+            <span className="testi-avatar" aria-hidden="true">
+              {r.name.charAt(0)}
+            </span>
             <div>
               <h4>{r.name}</h4>
               <span>{r.location}</span>

@@ -115,23 +115,64 @@
 .hero-buttons {
   display: flex;
   gap: 15px;
-  margin-top: 20px;
+  margin-top: 24px;
+  flex-wrap: wrap;
 }
 
-.email-btn, .phone-btn {
-  padding: 10px 18px;
-  border: none;
+.email-btn,
+.phone-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 14.5px;
+  font-weight: 500;
+  text-decoration: none;
   cursor: pointer;
-  border-radius: 6px;
+  transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.email-btn svg,
+.phone-btn svg {
+  flex-shrink: 0;
+}
+
+/* continuous gentle floating (the two buttons bob out of sync) */
+@keyframes btnFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
 }
 
 .email-btn {
   background: #22c7d8;
-  color: #fff;
+  color: #04333a;
+  border: 1px solid #22c7d8;
+  box-shadow: 0 10px 24px rgba(34, 199, 216, 0.4);
+  animation: btnFloat 3s ease-in-out infinite;
 }
 
 .phone-btn {
   background: transparent;
-  border: 1px solid #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   color: #fff;
+  animation: btnFloat 3s ease-in-out infinite 0.6s;
+}
+
+/* hover only changes colour/glow so it never fights the float transform */
+.email-btn:hover {
+  background: #2fd6e6;
+  box-shadow: 0 16px 32px rgba(34, 199, 216, 0.6);
+}
+
+.phone-btn:hover {
+  background: #fff;
+  color: #04333a;
+  border-color: #fff;
 }

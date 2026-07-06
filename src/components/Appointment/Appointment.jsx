@@ -60,7 +60,7 @@ const Appointment = () => {
               </span>
               <div>
                 <small>Phone Number</small>
-                <h4>+ 864 846 75324</h4>
+                <h4>+91 7797044666</h4>
               </div>
             </div>
 
@@ -70,7 +70,7 @@ const Appointment = () => {
               </span>
               <div>
                 <small>Email Address</small>
-                <h4>Info@Physio.Com</h4>
+                <h4>addlifephysiocare@gmail.com</h4>
               </div>
             </div>
 

@@ -158,7 +158,7 @@ export default function About() {
           />
 
           <div className="experience-circle">
-            <h3>15+</h3>
+            <h3>18+</h3>
             <p>YRS OF EXPERIENCE</p>
           </div>
         </Reveal>

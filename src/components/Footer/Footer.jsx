@@ -73,12 +73,12 @@ const Address = () => {
 
           <p>
             <FaPhoneAlt />
-            +91 77970 44666
+            +91 7797044666
           </p>
 
           <p>
             <FaEnvelope />
-            info@addlifephysiocare.in
+            addlifephysiocare@gmail.com
           </p>
         </Reveal>
 

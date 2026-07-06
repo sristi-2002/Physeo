@@ -111,12 +111,20 @@
   gap: 15px;
 }
 
-.testi-user img {
+.testi-avatar {
   width: 58px;
   height: 58px;
+  flex-shrink: 0;
   border-radius: 50%;
-  object-fit: cover;
   border: 2px solid #3bc4cf;
+  background: linear-gradient(135deg, #2ac5d6, #1aa0b0);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 26px;
+  font-weight: 600;
 }
 
 .testi-user h4 {

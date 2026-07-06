@@ -17,6 +17,7 @@ import Testimonials from "../components/Testimonials/Testimonials";
 // import SeoBand from "../components/SeoBand/SeoBand";
 //import LocalSeo from "../components/LocalSeo/LocalSeo";
 import Footer from "../components/Footer/Footer";
+import FloatingContact from "../components/FloatingContact/FloatingContact";
 
 function Home() {
   return (
@@ -94,6 +95,8 @@ function Home() {
       <section id="footer">
         <Footer />
       </section>
+
+      <FloatingContact />
     </>
   );
 }

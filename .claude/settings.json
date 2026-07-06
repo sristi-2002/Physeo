@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i -e 's#info@addlifephysiocare\\\\.in#addlifephysiocare@gmail.com#g' -e 's#+91 77970 44666#+91 7797044666#g' Hero/Hero.jsx)",
+      "Bash(sed -i -e 's#info@addlifephysiocare\\\\.in#addlifephysiocare@gmail.com#g' -e 's#+91 77970 44666#+91 7797044666#g' Footer/Footer.jsx)",
+      "Bash(sed -i -e 's#+ 864 846 75324#+91 7797044666#g' -e 's#Info@Physio\\\\.Com#addlifephysiocare@gmail.com#g' Appointment/Appointment.jsx)"
+    ]
+  }
+}
