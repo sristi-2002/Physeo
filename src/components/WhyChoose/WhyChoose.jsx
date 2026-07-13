@@ -3,7 +3,11 @@ import { useState } from "react";
 import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
 import Reveal from "../Reveal/Reveal";
 import Letters from "../Letters/Letters";
-
+import img20 from "../../assets/22.jpeg";
+import img21 from "../../assets/11.jpeg";
+import img22 from "../../assets/10.jpeg";
+import img23 from "../../assets/12.jpeg";
+import img24 from "../../assets/15.jpeg";
 /**
  * "Why Patients Trust Us" — expandable accordion list.
  * Each reason is a row (icon · title · description · arrow). Clicking a row
@@ -14,36 +18,31 @@ const reasons = [
     icon: "👨‍⚕️",
     title: "Experienced Physiotherapists",
     desc: "Highly skilled professionals committed to delivering exceptional patient care.",
-    image:
-      "https://images.unsplash.com/photo-1709880754445-8ffbd7e6ab3a?auto=format&fit=crop&w=1400&q=80",
+    image: img20,
   },
   {
     icon: "📋",
     title: "Personalized Treatment Plans",
     desc: "Customized rehabilitation programs designed according to individual needs and recovery goals.",
-    image:
-      "https://images.unsplash.com/photo-1663053822692-f036a147593c?auto=format&fit=crop&w=1400&q=80",
+    image: img21,
   },
   {
     icon: "🔬",
     title: "Evidence-Based Physiotherapy",
     desc: "Scientifically proven treatment techniques that ensure safe and effective outcomes.",
-    image:
-      "https://images.unsplash.com/photo-1709880754441-f254e7a7035c?auto=format&fit=crop&w=1400&q=80",
+    image: img22,
   },
   {
     icon: "🌿",
     title: "Holistic Rehabilitation Approach",
     desc: "Focused on pain relief, movement restoration, injury prevention, and long-term wellness.",
-    image:
-      "https://images.unsplash.com/photo-1746806942507-a7e93fdd6dd4?auto=format&fit=crop&w=1400&q=80",
+    image: img23,
   },
   {
     icon: "❤️",
     title: "Patient-Centered Care",
     desc: "Compassionate support throughout every stage of recovery.",
-    image:
-      "https://images.unsplash.com/photo-1709880754438-b1fb5d2f074c?auto=format&fit=crop&w=1400&q=80",
+    image: img24,
   },
 ];
 

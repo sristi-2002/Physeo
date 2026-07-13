@@ -1,7 +1,8 @@
 import "./About.css";
 import Reveal from "../Reveal/Reveal";
 import { FiCheck } from "react-icons/fi";
-
+import img6 from "../../assets/5.jpeg";
+import img8 from "../../assets/6.jpeg";
 /**
  * Splits heading segments into individual letters so each can
  * animate (pop + colour) one-by-one. Each segment carries its own
@@ -145,17 +146,16 @@ export default function About() {
             }}
           />
 
-          <img
-            src="https://images.unsplash.com/photo-1562771379-eafdca7a02f8?w=800"
-            alt="Physiotherapy treatment"
-            className="img-top"
-          />
-
-          <img
-            src="https://images.unsplash.com/photo-1645005512942-ebb840398a6a?w=800"
-            alt="Rehabilitation session"
-            className="img-bottom"
-          />
+         <img
+  src={img6}
+  alt="Physiotherapy treatment"
+  className="img-top"
+/>
+<img
+  src={img8}
+  alt="Rehabilitation session"
+  className="img-bottom"
+/>
 
           <div className="experience-circle">
             <h3>18+</h3>

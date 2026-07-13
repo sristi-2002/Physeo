@@ -10,21 +10,33 @@ import {
   FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa";
+import img1 from "../../assets/1.jpeg";
+import img2 from "../../assets/2.jpeg";
+import img3 from "../../assets/3.jpeg";
+import img4 from "../../assets/4.jpeg";
+import img5 from "../../assets/5.jpeg";
+import img6 from "../../assets/6.jpeg";
+import img7 from "../../assets/7.jpeg";
+import img8 from "../../assets/8.jpeg";
 
+import img16 from "../../assets/16.jpeg";
+const footerImages = [
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+  img16,
+];
 /* real physiotherapy / rehabilitation photos from Unsplash, square-cropped */
 const IMG = (id) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=400&h=400&q=80`;
 
 // from unsplash.com/s/photos/physiotherapy (verified loading, all distinct)
-const footerImages = [
-  IMG("photo-1645005512968-0c1fe99f0093"),
-  IMG("photo-1519823551278-64ac92734fb1"),
-  IMG("photo-1649751361457-01d3a696c7e6"),
-  IMG("photo-1706353399656-210cca727a33"),
-  IMG("photo-1586401100295-7a8096fd231a"),
-  IMG("photo-1540205895360-4ad4cffb3aa8"),
-  IMG("photo-1519824145371-296894a0daa9"),
-];
+
 
 const Address = () => {
   return (
@@ -36,13 +48,13 @@ const Address = () => {
         </div>
 
         <div className="footer-strip">
-          <div className="footer-strip-track">
-            {[...footerImages, ...footerImages].map((src, i) => (
-              <div className="footer-square" key={i}>
-                <img src={src} alt="Addlife Physiocare" loading="lazy" />
-              </div>
-            ))}
-          </div>
+         <div className="footer-strip-track">
+  {[...footerImages, ...footerImages].map((src, i) => (
+    <div className="footer-square" key={i}>
+      <img src={src} alt="Addlife Physiocare" loading="lazy" />
+    </div>
+  ))}
+</div>
         </div>
       </Reveal>
 
