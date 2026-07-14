@@ -77,45 +77,68 @@
   line-height: 1.8;
 }
 
-/* ---- services grid (all 12 services) ---- */
+/* ---- techniques grid (all 12) ---- */
 .techniques-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   max-width: 1120px;
   margin: 0 auto;
 }
 
 .technique-card {
-  background: rgba(255, 255, 255, 0.06);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  cursor: pointer;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  padding: 26px 16px;
-  text-align: center;
+  border-radius: 20px;
+  padding: 28px 26px;
+  text-align: left;
   transition: transform 0.4s ease, box-shadow 0.4s ease,
     background 0.4s ease, border-color 0.4s ease;
 }
 
+/* thin accent bar that grows across the top on hover */
+.technique-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #2ac5d6, #7df0f7);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .technique-card.is-visible:hover {
   transform: translateY(-7px);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35),
-    0 0 20px rgba(42, 197, 214, 0.3);
-  background: #2ac5d6;
-  border-color: #2ac5d6;
+  background: rgba(42, 197, 214, 0.1);
+  border-color: rgba(42, 197, 214, 0.5);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(42, 197, 214, 0.18);
+}
+
+.technique-card.is-visible:hover::before {
+  transform: scaleX(1);
 }
 
 /* icon on a white circular badge with a gentle float */
 .technique-icon {
-  width: 54px;
-  height: 54px;
-  margin: 0 auto 14px;
-  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  margin: 0 0 18px;
+  border-radius: 16px;
   background: #ffffff;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  font-size: 27px;
   animation: techFloat 3.6s ease-in-out infinite;
   transition: transform 0.4s ease;
 }
@@ -126,25 +149,140 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
   }
 }
 
 .technique-card.is-visible:hover .technique-icon {
   animation: none;
-  transform: scale(1.12);
+  transform: scale(1.1) rotate(-4deg);
 }
 
 .technique-card h4 {
   font-family: "Cormorant Garamond", serif;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   color: #fff;
+  margin-bottom: 12px;
   transition: color 0.4s ease;
 }
 
 .technique-card.is-visible:hover h4 {
-  color: #0c2d2f;
+  color: #7df0f7;
+}
+
+/* "View details" hint */
+.technique-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.4s ease, gap 0.3s ease;
+}
+
+.technique-card.is-visible:hover .technique-more {
+  color: #2ac5d6;
+  gap: 9px;
+}
+
+/* ---------- detail popup ---------- */
+.tech-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(6, 26, 27, 0.62);
+  backdrop-filter: blur(4px);
+  animation: tech-fade 0.22s ease;
+}
+
+.tech-popup {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  padding: 40px 38px 36px;
+  border-radius: 22px;
+  background: linear-gradient(160deg, #12484b 0%, #0c3032 100%);
+  border: 1px solid rgba(125, 240, 247, 0.25);
+  border-top: 5px solid #2ac5d6;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  animation: tech-pop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-popup-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #cfeaea;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tech-popup-close:hover {
+  background: #2ac5d6;
+  color: #08313a;
+}
+
+.tech-popup-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tech-popup-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.tech-popup-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@keyframes tech-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tech-pop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: 1024px) {

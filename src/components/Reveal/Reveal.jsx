@@ -14,6 +14,8 @@ export default function Reveal({
   className = "",
   as: Tag = "div",
   once = true,
+  style,
+  ...rest
 }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -44,7 +46,8 @@ export default function Reveal({
       className={`reveal reveal-${direction} ${
         visible ? "is-visible" : ""
       } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: `${delay}ms`, ...style }}
+      {...rest}
     >
       {children}
     </Tag>

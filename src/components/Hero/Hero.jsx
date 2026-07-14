@@ -1,6 +1,7 @@
 import "./Hero.css";
 import { useEffect, useState } from "react";
 import { Mail, Phone } from "lucide-react";
+import { usePhonePopup } from "../PhonePopup/context";
 
 const words = [
   { text: "We", color: "white" },
@@ -11,6 +12,7 @@ const words = [
 
 export default function Hero() {
   const [key, setKey] = useState(0);
+  const openPhone = usePhonePopup();
 
  useEffect(() => {
   const interval = setInterval(() => {
@@ -59,10 +61,22 @@ export default function Hero() {
   Clinic In Salt Lake Sector III, Kolkata.
 </p>
 <div key={`btns-${key}`} className="hero-buttons animate-buttons">
-  <a href="mailto:addlifephysiocare@gmail.com" className="email-btn">
+  <a
+    href="https://mail.google.com/mail/?view=cm&fs=1&to=addlifephysiocare@gmail.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="email-btn"
+  >
     <Mail size={16} /> addlifephysiocare@gmail.com
   </a>
-  <a href="tel:+917797044666" className="phone-btn">
+  <a
+    href="tel:+917797044666"
+    className="phone-btn"
+    onClick={(e) => {
+      e.preventDefault();
+      openPhone();
+    }}
+  >
     <Phone size={16} /> +91 7797044666
   </a>
 </div>

@@ -43,6 +43,12 @@
   color: #2ac5d6;
 }
 
+.features-sub {
+  margin-top: 12px;
+  color: #5a7378;
+  font-size: 14px;
+}
+
 /* ---------- orbit stage ---------- */
 .orbit-stage {
   position: relative;
@@ -132,7 +138,43 @@
   z-index: 1;
 }
 
-/* static center circle */
+/* rotating "We Keep You Moving" text ring around the center */
+.orbit-commit-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 340px;
+  height: 340px;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  pointer-events: none;
+  animation: commit-spin 22s linear infinite;
+}
+
+.orbit-commit-text svg {
+  width: 100%;
+  height: 100%;
+}
+
+.orbit-commit-text text {
+  fill: #1aa3b3;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+@keyframes commit-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* center card — Our Commitment (clickable) */
 .orbit-center {
   position: absolute;
   top: 50%;
@@ -141,46 +183,58 @@
   height: 250px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  overflow: hidden;
   z-index: 3;
   border: 5px solid #fff;
   box-shadow: 0 25px 60px rgba(23, 53, 59, 0.28);
-}
-
-.orbit-center img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.orbit-center-overlay {
-  position: absolute;
-  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 30px;
-  background: linear-gradient(
-    to top,
-    rgba(11, 45, 47, 0.82) 0%,
-    rgba(11, 45, 47, 0.1) 45%,
-    transparent 68%
-  );
-}
-
-.orbit-center-overlay strong {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 22px;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  cursor: pointer;
   color: #fff;
+  background: linear-gradient(150deg, #17a5b3 0%, #10484b 55%, #0c2d2f 100%);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.orbit-center-overlay em {
+.orbit-center:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 30px 70px rgba(23, 53, 59, 0.42);
+}
+
+.orbit-center-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+}
+
+.orbit-center strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.orbit-center em {
   font-style: normal;
-  font-size: 11px;
+  font-size: 10.5px;
   letter-spacing: 2px;
-  color: #44d9df;
-  margin-top: 2px;
+  text-transform: uppercase;
+  color: #cdf5f8;
+}
+
+/* decorative layers must never intercept clicks meant for the cards */
+.orbit-glow,
+.orbit-rings,
+.orbit-dashed,
+.orbit-pulse {
+  pointer-events: none;
 }
 
 /* rotating rings (two layers, opposite directions) */
@@ -188,6 +242,9 @@
   position: absolute;
   inset: 0;
   z-index: 2;
+  /* the full-size rotor boxes overlap each other — let clicks fall through
+     the empty areas so only the cards themselves are clickable */
+  pointer-events: none;
 }
 
 .orbit-rotor.inner {
@@ -229,6 +286,12 @@
 .orbit-spin {
   width: 100%;
   height: 100%;
+  pointer-events: none;
+}
+
+/* re-enable clicks on the card itself */
+.orbit-card {
+  pointer-events: auto;
 }
 
 /* ---- NEW card design ---- */
@@ -243,6 +306,8 @@
   gap: 10px;
   padding: 16px 14px;
   border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
   background: #ffffff;
   box-shadow: 0 14px 30px rgba(23, 53, 59, 0.16);
   border: 1px solid color-mix(in srgb, var(--c) 35%, #e2ece5);
@@ -344,6 +409,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  width: 100%;
   background: #fff;
   border: 1px solid #d6e3da;
   border-radius: 16px;
@@ -352,11 +418,117 @@
   text-align: left;
   font-size: 15px;
   font-weight: 500;
+  font-family: inherit;
   color: #17353b;
+  cursor: pointer;
+}
+
+.orbit-list-item:hover {
+  border-color: var(--c, #2ac5d6);
 }
 
 .orbit-list-item .orbit-card-icon {
   flex-shrink: 0;
+}
+
+/* ---------- centered detail popup ---------- */
+.feat-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(8, 30, 31, 0.6);
+  backdrop-filter: blur(4px);
+  animation: feat-fade 0.22s ease;
+}
+
+.feat-popup {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  text-align: center;
+  padding: 40px 40px 38px;
+  border-radius: 22px;
+  background: #ffffff;
+  border-top: 6px solid var(--c);
+  box-shadow: 0 30px 80px rgba(8, 30, 31, 0.4);
+  animation: feat-pop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feat-popup-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: #eef4f4;
+  color: #486063;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.feat-popup-close:hover {
+  background: var(--c);
+  color: #fff;
+}
+
+.feat-popup-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--c) 16%, #fff);
+  border: 1px solid color-mix(in srgb, var(--c) 40%, #fff);
+}
+
+.feat-popup-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #17353b;
+  margin-bottom: 16px;
+}
+
+.feat-popup-text {
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: #40595d;
+  text-align: left;
+}
+
+@keyframes feat-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes feat-pop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* ---------- promise banner ---------- */
@@ -432,7 +604,8 @@
   .orbit-pulse,
   .orbit-glow,
   .orbit-dashed,
-  .orbit-card-icon {
+  .orbit-card-icon,
+  .orbit-commit-text {
     animation: none;
   }
 }

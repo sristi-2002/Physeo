@@ -105,6 +105,16 @@
   list-style: none;
 }
 
+.footer-column p a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-column p a:hover {
+  color: #ffffff;
+}
+
 .social-icons {
   display: flex;
   gap: 12px;

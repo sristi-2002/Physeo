@@ -1,6 +1,6 @@
 import "./WhyChoose.css";
 import { useState } from "react";
-import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
+import { ArrowUpRight, Check, Plus } from "lucide-react";
 import Reveal from "../Reveal/Reveal";
 import Letters from "../Letters/Letters";
 import img20 from "../../assets/22.jpeg";
@@ -8,10 +8,11 @@ import img21 from "../../assets/11.jpeg";
 import img22 from "../../assets/10.jpeg";
 import img23 from "../../assets/12.jpeg";
 import img24 from "../../assets/15.jpeg";
+
 /**
- * "Why Patients Trust Us" — expandable accordion list.
- * Each reason is a row (icon · title · description · arrow). Clicking a row
- * opens it and reveals a large image; opening one closes the others.
+ * "Why Patients Trust Us" — split showcase.
+ * Left: the reasons as a vertical tab list. Right: a large panel showing the
+ * selected reason's image and highlights. Selecting a tab swaps the panel.
  */
 const reasons = [
   {
@@ -19,35 +20,61 @@ const reasons = [
     title: "Experienced Physiotherapists",
     desc: "Highly skilled professionals committed to delivering exceptional patient care.",
     image: img20,
+    points: [
+      "Licensed, degree-qualified physiotherapists",
+      "Years of hands-on clinical experience",
+      "Ongoing training in the latest techniques",
+    ],
   },
   {
     icon: "📋",
     title: "Personalized Treatment Plans",
     desc: "Customized rehabilitation programs designed according to individual needs and recovery goals.",
     image: img21,
+    points: [
+      "One-to-one assessment before you start",
+      "Plan built around your goals and lifestyle",
+      "Adjusted as your recovery progresses",
+    ],
   },
   {
     icon: "🔬",
     title: "Evidence-Based Physiotherapy",
     desc: "Scientifically proven treatment techniques that ensure safe and effective outcomes.",
     image: img22,
+    points: [
+      "Techniques backed by clinical research",
+      "Safe, proven treatment protocols",
+      "Measurable, trackable outcomes",
+    ],
   },
   {
     icon: "🌿",
     title: "Holistic Rehabilitation Approach",
     desc: "Focused on pain relief, movement restoration, injury prevention, and long-term wellness.",
     image: img23,
+    points: [
+      "Pain relief and movement restoration",
+      "Guidance to prevent future injury",
+      "Focus on long-term wellbeing",
+    ],
   },
   {
     icon: "❤️",
     title: "Patient-Centered Care",
     desc: "Compassionate support throughout every stage of recovery.",
     image: img24,
+    points: [
+      "Compassionate support at every visit",
+      "Clear communication throughout",
+      "Care that adapts to your needs",
+    ],
   },
 ];
 
 export default function WhyChoose() {
   const [active, setActive] = useState(0);
+  const item = reasons[active];
 
   return (
     <section className="why-choose">
@@ -56,7 +83,7 @@ export default function WhyChoose() {
           <span className="wc-tag">
             <span className="wc-tag-line"></span>
             <span className="wc-tag-text">
-              <Letters text="TRUSTED CARE" step={30} />
+              <Letters text="PATIENTS TRUSTED US" step={30} />
             </span>
           </span>
           <h2 className="wc-h2">
@@ -74,43 +101,53 @@ export default function WhyChoose() {
         </button>
       </Reveal>
 
-      <div className="wc-list">
-        {reasons.map((item, index) => {
-          const isOpen = active === index;
-          return (
-            <Reveal
-              key={index}
-              direction="up"
-              delay={index * 100}
-              className="wc-item-wrap"
-            >
-              <div
-                className={`wc-item ${isOpen ? "open" : ""}`}
-                onClick={() => setActive(index)}
+      <Reveal direction="up" delay={80} className="wc-split">
+        {/* left — tab list */}
+        <div className="wc-tabs" role="tablist">
+          {reasons.map((r, i) => {
+            const isActive = i === active;
+            return (
+              <button
+                key={i}
+                role="tab"
+                aria-selected={isActive}
+                className={`wc-tab ${isActive ? "active" : ""}`}
+                onClick={() => setActive(i)}
               >
-                <div className="wc-row">
-                  <span className="wc-icon">{item.icon}</span>
-                  <h3>
-                    <Letters text={item.title} step={26} />
-                  </h3>
-                  <p>{item.desc}</p>
-                  <span className="wc-arrow">
-                    {isOpen ? (
-                      <ArrowUpRight size={18} />
-                    ) : (
-                      <ArrowRight size={18} />
-                    )}
-                  </span>
-                </div>
+                <span className="wc-tab-num">{`0${i + 1}`}</span>
+                <span className="wc-tab-icon">{r.icon}</span>
+                <span className="wc-tab-text">
+                  <span className="wc-tab-title">{r.title}</span>
+                  <span className="wc-tab-desc">{r.desc}</span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
-                <div className="wc-media">
-                  <img src={item.image} alt={item.title} />
-                </div>
-              </div>
-            </Reveal>
-          );
-        })}
-      </div>
+        {/* right — showcase panel (re-mounts on change to animate in) */}
+        <div className="wc-showcase" key={active}>
+          <div className="wc-showcase-media">
+            <img src={item.image} alt={item.title} />
+          </div>
+
+          <div className="wc-showcase-body">
+            <span className="wc-showcase-label">What you get</span>
+            <ul className="wc-points">
+              {item.points.map((point, i) => (
+                <li key={i}>
+                  <Check size={18} />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+            <a className="wc-cta" href="#appointment">
+              Book a session
+              <ArrowUpRight size={16} />
+            </a>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }

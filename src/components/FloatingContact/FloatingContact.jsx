@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Mail, Phone } from "lucide-react";
+import { usePhonePopup } from "../PhonePopup/context";
 import "./FloatingContact.css";
 
 /**
@@ -8,6 +9,7 @@ import "./FloatingContact.css";
  */
 export default function FloatingContact() {
   const [show, setShow] = useState(false);
+  const openPhone = usePhonePopup();
 
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 300);
@@ -22,13 +24,19 @@ export default function FloatingContact() {
         href="tel:+917797044666"
         className="fc-btn fc-phone"
         aria-label="Call Addlife Physiocare"
+        onClick={(e) => {
+          e.preventDefault();
+          openPhone();
+        }}
       >
         <Phone size={20} />
         <span className="fc-label">+91 7797044666</span>
       </a>
 
       <a
-        href="mailto:addlifephysiocare@gmail.com"
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=addlifephysiocare@gmail.com"
+        target="_blank"
+        rel="noopener noreferrer"
         className="fc-btn fc-email"
         aria-label="Email Addlife Physiocare"
       >

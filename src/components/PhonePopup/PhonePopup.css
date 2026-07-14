@@ -1,0 +1,137 @@
+.phone-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(8, 30, 31, 0.55);
+  backdrop-filter: blur(3px);
+  animation: phone-popup-fade 0.2s ease;
+}
+
+.phone-popup {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px 26px 26px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(8, 30, 31, 0.28);
+  animation: phone-popup-pop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.phone-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: #f1f5f5;
+  color: #4a6567;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.phone-popup-close:hover {
+  background: #e2ebeb;
+  color: #102f31;
+}
+
+.phone-popup-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e6f4f4;
+  color: #1a8c8f;
+}
+
+.phone-popup-title {
+  margin: 0 0 6px;
+  font-size: 19px;
+  color: #102f31;
+}
+
+.phone-popup-number {
+  margin: 0 0 22px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #1a8c8f;
+}
+
+.phone-popup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.phone-popup-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  padding: 13px 18px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.phone-popup-btn:active {
+  transform: scale(0.98);
+}
+
+.phone-popup-call {
+  background: #1a8c8f;
+  color: #ffffff;
+}
+
+.phone-popup-call:hover {
+  background: #157477;
+}
+
+.phone-popup-copy {
+  background: #f1f5f5;
+  color: #102f31;
+  border-color: #dbe6e6;
+}
+
+.phone-popup-copy:hover {
+  background: #e6efef;
+}
+
+@keyframes phone-popup-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes phone-popup-pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

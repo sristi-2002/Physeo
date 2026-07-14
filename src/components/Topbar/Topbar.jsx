@@ -12,7 +12,12 @@ export default function TopBar() {
   return (
     <div className="topbar">
       <div className="topbar-container">
-        <div className="topbar-left">
+        <a
+          className="topbar-left"
+          href="https://www.google.com/maps/search/?api=1&query=Addlife+Physiocare+Salt+Lake+Sector+III+Kolkata"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <div className="location-icon">
             <IoLocationSharp />
           </div>
@@ -21,7 +26,7 @@ export default function TopBar() {
             Salt Lake Sector III, Kolkata,
             West Bengal, India
           </p>
-        </div>
+        </a>
 
         <div className="topbar-center">
           <span>

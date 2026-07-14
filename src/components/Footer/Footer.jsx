@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import Reveal from "../Reveal/Reveal";
+import { usePhonePopup } from "../PhonePopup/context";
 import {
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -39,6 +40,7 @@ const IMG = (id) =>
 
 
 const Address = () => {
+  const openPhone = usePhonePopup();
   return (
     <footer className="footer">
       <Reveal direction="zoom" className="footer-gallery">
@@ -80,17 +82,37 @@ const Address = () => {
 
           <p>
             <FaMapMarkerAlt />
-            KB 25, Salt Lake City, Sector III, Kolkata - 700106
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Addlife+Physiocare+KB+25+Salt+Lake+Sector+III+Kolkata+700106"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              KB 25, Salt Lake City, Sector III, Kolkata - 700106
+            </a>
           </p>
 
           <p>
             <FaPhoneAlt />
-            +91 7797044666
+            <a
+              href="tel:+917797044666"
+              onClick={(e) => {
+                e.preventDefault();
+                openPhone();
+              }}
+            >
+              +91 7797044666
+            </a>
           </p>
 
           <p>
             <FaEnvelope />
-            addlifephysiocare@gmail.com
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=addlifephysiocare@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              addlifephysiocare@gmail.com
+            </a>
           </p>
         </Reveal>
 

@@ -2,11 +2,11 @@ import "./Testimonials.css";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 import Reveal from "../Reveal/Reveal";
+import testiImage from "../../assets/21.jpeg";
 
 /* Same background image for every review — only the review text changes.
    Reviews are placeholders; replace with the clinic's real testimonials. */
-const TESTI_IMAGE =
-  "https://images.unsplash.com/photo-1645005513709-77336f075dc8?auto=format&fit=crop&w=1920&q=80";
+const TESTI_IMAGE = testiImage;
 
 /* Real Google reviews for Addlife Physiocare (Salt Lake, Kolkata). */
 const reviews = [
