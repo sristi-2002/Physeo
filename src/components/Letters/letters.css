@@ -2,6 +2,13 @@
    A consuming section triggers the loop with a selector like
    `.my-block.is-visible .char { animation: lettersLoop 6s ... infinite; }`. */
 
+/* Keep every word on one line — its letters are inline-block, so without this
+   a word could wrap between letters on narrow screens. */
+.ltr-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .char {
   display: inline-block;
   opacity: 0;

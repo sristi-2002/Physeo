@@ -46,8 +46,15 @@
   transition: box-shadow 0.3s ease, filter 0.3s ease;
 }
 
+/* authentic WhatsApp green */
+.fc-whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+}
+
+/* recoloured so it isn't confused with the WhatsApp button */
 .fc-phone {
-  background: linear-gradient(135deg, #25d366, #1eae54);
+  background: linear-gradient(135deg, #ff7a59, #ef5f3c);
+  animation-delay: 0.3s;
 }
 
 .fc-email {

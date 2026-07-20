@@ -200,7 +200,9 @@ export default function About() {
                 <span className="spec-check">
                   <FiCheck />
                 </span>
-                {item}
+                {/* wrapped so it's a real flex item that can shrink and wrap;
+                    a bare text node won't and overflows the chip */}
+                <span className="spec-label">{item}</span>
               </Reveal>
             ))}
           </div>

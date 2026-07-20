@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 import { Mail, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { usePhonePopup } from "../PhonePopup/context";
 import "./FloatingContact.css";
 
+/* wa.me needs the number in international form with no "+" or spaces */
+const WHATSAPP_URL =
+  "https://wa.me/917797044666?text=" +
+  encodeURIComponent(
+    "Hello, I would like to book a physiotherapy appointment at Addlife Physiocare."
+  );
+
 /**
- * Fixed floating contact buttons (email + phone) that appear once the user
- * scrolls past the hero, so the clinic's contact is always one tap away.
+ * Fixed floating contact buttons (WhatsApp + phone + email) that appear once
+ * the user scrolls past the hero, so the clinic's contact is always one tap away.
  */
 export default function FloatingContact() {
   const [show, setShow] = useState(false);
@@ -20,6 +28,17 @@ export default function FloatingContact() {
 
   return (
     <div className={`float-contact ${show ? "show" : ""}`}>
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fc-btn fc-whatsapp"
+        aria-label="Message Addlife Physiocare on WhatsApp"
+      >
+        <FaWhatsapp size={26} />
+        <span className="fc-label">Chat on WhatsApp</span>
+      </a>
+
       <a
         href="tel:+917797044666"
         className="fc-btn fc-phone"

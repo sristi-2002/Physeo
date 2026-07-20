@@ -176,3 +176,140 @@
   color: #04333a;
   border-color: #fff;
 }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Small laptops — scale down oversized heading + gaps */
+@media (max-width: 1200px) {
+  .hero-content {
+    max-width: 620px;
+    margin-left: 5%;
+  }
+  .hero-content h1 {
+    font-size: 52px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .hero {
+    min-height: 100vh;
+  }
+  .hero-content {
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: 130px;
+    padding: 0 40px 40px;
+  }
+  .hero-content h1 {
+    font-size: 44px;
+  }
+}
+
+/* Large phone */
+@media (max-width: 768px) {
+  .hero {
+    /* keep as a scrolling section rather than forcing a viewport-tall banner */
+    min-height: 100vh;
+    align-items: center;
+  }
+  .hero-content {
+    margin-top: 110px;
+    padding: 0 24px 40px;
+  }
+  .trusted-care {
+    margin-bottom: 18px;
+  }
+  .hero-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  .hero-text {
+    font-size: 15px;
+  }
+  /* Keep both CTAs on one row and let them share the width evenly. */
+  .hero-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+    margin-top: 22px;
+  }
+  .email-btn,
+  .phone-btn {
+    /* flex items default to min-width:auto, which would refuse to shrink
+       below the email address's intrinsic width and overflow the row */
+    min-width: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    min-height: 50px;
+    padding: 14px 12px;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  /* The email address is far longer than the number, so split the row in
+     proportion to the content instead of 50/50. */
+  .email-btn {
+    flex: 1.4 1 0;
+  }
+  .phone-btn {
+    flex: 1 1 0;
+  }
+}
+
+/* Small phone */
+@media (max-width: 480px) {
+  .hero-content {
+    margin-top: 100px;
+    padding: 0 20px 36px;
+  }
+  .hero-content h1 {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+  .hero-text {
+    font-size: 14px;
+  }
+  /* Both CTAs stay side by side; the type shrinks so the full email
+     address and number still fit at 360px without truncating. */
+  .hero-buttons {
+    gap: 8px;
+  }
+  .email-btn,
+  .phone-btn {
+    min-height: 48px;
+    padding: 13px 9px;
+    gap: 5px;
+    font-size: 11px;
+    letter-spacing: -0.1px;
+  }
+  .email-btn svg,
+  .phone-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Very small phones (≤360px) — trim a little further so nothing clips. */
+@media (max-width: 360px) {
+  .hero-buttons {
+    gap: 7px;
+  }
+  .email-btn,
+  .phone-btn {
+    min-height: 46px;
+    padding: 12px 7px;
+    font-size: 10px;
+  }
+  .email-btn svg,
+  .phone-btn svg {
+    width: 13px;
+    height: 13px;
+  }
+}

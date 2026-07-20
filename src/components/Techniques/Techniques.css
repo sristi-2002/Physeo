@@ -127,6 +127,11 @@
   transform: scaleX(1);
 }
 
+/* tap feedback on touch devices (no hover) */
+.technique-card:active {
+  transform: scale(0.97);
+}
+
 /* icon on a white circular badge with a gentle float */
 .technique-icon {
   width: 56px;
@@ -285,22 +290,98 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .techniques-grid {
-    grid-template-columns: repeat(3, 1fr);
+/* ---------- responsive ---------- */
+@media (max-width: 1200px) {
+  .techniques {
+    padding: 90px 60px;
+  }
+  .tech-h2 {
+    font-size: 48px;
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 992px) {
   .techniques {
-    padding: 70px 22px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
+    padding: 80px 40px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
   }
   .techniques-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .tech-h2 {
-    font-size: 38px;
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .techniques {
+    padding: 70px 24px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+  }
+  .techniques-header {
+    margin-bottom: 40px;
+  }
+  .tech-h2 {
+    font-size: 36px;
+  }
+  .techniques-sub {
+    font-size: 14px;
+  }
+  .technique-card {
+    padding: 24px 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .techniques {
+    padding: 55px 14px;
+    border-top-left-radius: 34px;
+    border-top-right-radius: 34px;
+  }
+  .section-title-tech p {
+    font-size: 11px;
+  }
+  .section-title-tech .tech-line {
+    width: 44px;
+  }
+  .tech-h2 {
+    font-size: 30px;
+  }
+
+  /* compact 2-up card grid instead of full-width bars */
+  .techniques-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .technique-card {
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+  .technique-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+    border-radius: 13px;
+    margin-bottom: 12px;
+  }
+  .technique-card h4 {
+    font-size: 17px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .technique-more {
+    font-size: 11px;
+  }
+
+  .tech-popup {
+    padding: 34px 24px 30px;
+  }
+  .tech-popup-title {
+    font-size: 24px;
+  }
+  .tech-popup-text {
+    font-size: 14px;
   }
 }

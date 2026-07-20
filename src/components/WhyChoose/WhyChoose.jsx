@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowUpRight, Check, Plus } from "lucide-react";
 import Reveal from "../Reveal/Reveal";
 import Letters from "../Letters/Letters";
+import Modal from "../Modal/Modal";
 import img20 from "../../assets/22.jpeg";
 import img21 from "../../assets/11.jpeg";
 import img22 from "../../assets/10.jpeg";
@@ -74,7 +75,11 @@ const reasons = [
 
 export default function WhyChoose() {
   const [active, setActive] = useState(0);
-  const item = reasons[active];
+  // Mobile popup keeps its own index so opening/closing it never disturbs
+  // which reason the desktop showcase is displaying.
+  const [openIndex, setOpenIndex] = useState(null);
+  const item = reasons[active] || reasons[0];
+  const popup = openIndex === null ? null : reasons[openIndex];
 
   return (
     <section className="why-choose">
@@ -148,6 +153,57 @@ export default function WhyChoose() {
           </div>
         </div>
       </Reveal>
+
+      {/* Mobile — compact card grid; tapping a card opens the full detail
+          (image, description, points, CTA) in a popup. */}
+      <div className="wc-cards">
+        {reasons.map((r, i) => (
+          <button
+            key={i}
+            className="wc-card"
+            onClick={() => setOpenIndex(i)}
+            aria-label={`${r.title} — view details`}
+          >
+            <span className="wc-card-num">{`0${i + 1}`}</span>
+            <span className="wc-card-icon">{r.icon}</span>
+            <span className="wc-card-title">{r.title}</span>
+            <span className="wc-card-more">
+              View details
+              <ArrowUpRight size={14} />
+            </span>
+          </button>
+        ))}
+      </div>
+
+      <Modal
+        open={popup !== null}
+        onClose={() => setOpenIndex(null)}
+        label="Why patients trust us"
+        title={popup?.title}
+        media={popup && <img src={popup.image} alt={popup.title} />}
+      >
+        {popup && (
+          <>
+            <p className="wc-modal-desc">{popup.desc}</p>
+            <ul className="wc-points">
+              {popup.points.map((point, p) => (
+                <li key={p}>
+                  <Check size={18} />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              className="wc-cta"
+              href="#appointment"
+              onClick={() => setOpenIndex(null)}
+            >
+              Book a session
+              <ArrowUpRight size={16} />
+            </a>
+          </>
+        )}
+      </Modal>
     </section>
   );
 }

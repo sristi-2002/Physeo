@@ -8,8 +8,6 @@ import {
   FaEnvelope,
   FaFacebookF,
   FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
 } from "react-icons/fa";
 import img1 from "../../assets/1.jpeg";
 import img2 from "../../assets/2.jpeg";
@@ -70,10 +68,22 @@ const Address = () => {
           </p>
 
           <div className="social-icons">
-            <FaTwitter />
-            <FaInstagram />
-            <FaFacebookF />
-            <FaLinkedinIn />
+            <a
+              href="https://www.instagram.com/reel/DUSecrMEwKJ/?igsh=eXdua3Z0d2ttenU2"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://www.facebook.com/share/p/19BgobY3kC/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <FaFacebookF />
+            </a>
           </div>
         </Reveal>
 

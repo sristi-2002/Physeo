@@ -214,12 +214,11 @@ const Features = () => {
             delay={(index % 3) * 80}
             className="orbit-list-item"
             as="button"
+            style={{ "--c": item.color }}
             onClick={() => setSelected(item)}
           >
-            <span className="orbit-card-icon" style={{ "--c": item.color }}>
-              {item.icon}
-            </span>
-            {item.text}
+            <span className="orbit-card-icon">{item.icon}</span>
+            <span className="orbit-list-text">{item.text}</span>
           </Reveal>
         ))}
         <Reveal
@@ -227,12 +226,11 @@ const Features = () => {
           delay={80}
           className="orbit-list-item"
           as="button"
+          style={{ "--c": commitment.color }}
           onClick={() => setSelected(commitment)}
         >
-          <span className="orbit-card-icon" style={{ "--c": commitment.color }}>
-            {commitment.icon}
-          </span>
-          {commitment.text}
+          <span className="orbit-card-icon">{commitment.icon}</span>
+          <span className="orbit-list-text">{commitment.text}</span>
         </Reveal>
       </div>
 

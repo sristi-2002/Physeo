@@ -186,9 +186,19 @@
 }
 
 /* responsive */
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
+  .testi-content {
+    padding: 60px 60px 60px 0;
+  }
+  .testimonials h2 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 992px) {
   .testimonials {
     justify-content: center;
+    min-height: 0;
   }
   .testi-overlay {
     background: linear-gradient(
@@ -203,7 +213,38 @@
     padding: 60px 26px;
   }
   .testimonials h2 {
-    font-size: 32px;
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testi-content {
+    padding: 50px 22px;
+  }
+  .testimonials h2 {
+    font-size: 30px;
+  }
+  .testi-body p {
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .testi-content {
+    padding: 44px 18px;
+  }
+  .testimonials h2 {
+    font-size: 27px;
+    line-height: 1.25;
+  }
+  .testi-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+  }
+  .testi-user h4 {
+    font-size: 16px;
   }
 }
 

@@ -334,16 +334,65 @@
   resize: none;
 }
 
+.submit-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* WhatsApp variant — sends the same details straight to the clinic's number */
+.appointment-right .wa-btn {
+  background: #25d366;
+}
+
+.appointment-right .wa-btn:hover {
+  background: #128c7e;
+}
+
+.wa-arrow {
+  background: #0b6b52;
+}
+
+.appointment-right button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* submit result message */
+.form-status {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 14.5px;
+  line-height: 1.55;
+  padding: 12px 16px;
+  border-radius: 14px;
+}
+
+.form-status.success {
+  color: #0d6b4f;
+  background: #e6f7ef;
+  border: 1px solid #b7e6d0;
+}
+
+.form-status.error {
+  color: #98342a;
+  background: #fdecea;
+  border: 1px solid #f5c6c0;
+}
+
 .appointment-right button {
   position: relative;
-  width: 100%;
   border: none;
   background: #1aa5b0;
   color: white;
-  padding: 18px;
+  padding: 11px 11px 11px 24px;
   border-radius: 40px;
   cursor: pointer;
-  font-size: 15.5px;
+  font-size: 14.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   transition: background 0.3s ease;
 }
 
@@ -352,18 +401,50 @@
 }
 
 .btn-arrow {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: #16393c;
   color: #fff;
+}
+
+/* ---------- social links ---------- */
+.appt-socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.appt-socials-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #16393c;
+}
+
+.appt-socials a {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #16393c;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.appt-socials a:hover {
+  background: #1aa5b0;
+  transform: translateY(-3px);
 }
 
 /* ---------- image carousel (its own card below) ---------- */
@@ -449,9 +530,42 @@
   }
 }
 
+/* ---------- responsive ---------- */
+@media (max-width: 1200px) {
+  .appointment-section {
+    padding: 90px 6%;
+  }
+  .appt-marquee {
+    margin-top: -90px;
+  }
+  .appointment-left h2 {
+    font-size: 44px;
+  }
+  .appt-marquee-item {
+    font-size: 24px;
+  }
+  .appointment-container {
+    gap: 40px;
+  }
+}
+
 @media (max-width: 992px) {
+  .appointment-section {
+    padding: 70px 5%;
+  }
+  .appt-marquee {
+    margin-top: -70px;
+    margin-bottom: 55px;
+  }
+
   .appointment-container {
     flex-direction: column;
+    gap: 40px;
+  }
+
+  .appointment-left,
+  .appointment-right {
+    width: 100%;
   }
 
   .form-row {
@@ -460,5 +574,82 @@
 
   .appt-slide img {
     height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .appointment-section {
+    padding: 55px 24px;
+  }
+  .appt-marquee {
+    margin-top: -55px;
+    padding: 16px 0;
+  }
+  .appt-marquee-item {
+    font-size: 21px;
+    gap: 18px;
+    padding: 0 18px;
+  }
+  .appointment-left h2 {
+    font-size: 34px;
+  }
+  .appointment-left p {
+    margin-bottom: 28px;
+  }
+
+  /* stack contact info vertically, drop the vertical dividers */
+  .contact-info {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .info-item + .info-item {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .appointment-right {
+    padding: 26px;
+    border-radius: 22px;
+  }
+
+  .appt-slide img {
+    height: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .appointment-section {
+    padding: 45px 18px;
+  }
+  .appt-marquee {
+    margin-top: -45px;
+    margin-bottom: 40px;
+  }
+  .appt-marquee-item {
+    font-size: 18px;
+  }
+  .appointment-left h2 {
+    font-size: 29px;
+  }
+  .appointment-right {
+    padding: 20px;
+    border-radius: 18px;
+  }
+  .appointment-right input,
+  .appointment-right select,
+  .appointment-right textarea {
+    padding: 14px 16px;
+  }
+
+  .appt-socials {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .appt-carousel {
+    margin-top: 36px;
+  }
+  .appt-slide img {
+    height: 220px;
   }
 }

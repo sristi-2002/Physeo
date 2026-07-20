@@ -1,6 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Appointment.css";
-import { FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaClock,
+  FaFacebookF,
+  FaInstagram,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { Sparkle, Calendar, ArrowUpRight } from "lucide-react";
 import Reveal from "../Reveal/Reveal";
 import Letters from "../Letters/Letters";
@@ -24,11 +31,22 @@ const marqueeItems = [
 ];
 
 const CLINIC_EMAIL = "addlifephysiocare@gmail.com";
+/* wa.me needs the number in international form with no "+" or spaces */
+const CLINIC_WHATSAPP = "917797044666";
+
+/* Free access key from https://web3forms.com — it is tied to the clinic's
+   inbox and is meant to be public, so it is safe in frontend code.
+   Until a real key is pasted here the form falls back to opening Gmail. */
+const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+const hasFormKey =
+  WEB3FORMS_ACCESS_KEY && !WEB3FORMS_ACCESS_KEY.startsWith("YOUR_");
 
 const Appointment = () => {
   const openPhone = usePhonePopup();
   const dateRef = useRef(null);
   const [slide, setSlide] = useState(0);
+  // null | "sending" | "success" | "error"
+  const [status, setStatus] = useState(null);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -65,7 +83,11 @@ const Appointment = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  /* Which button was pressed — both are submit buttons so the browser still
+     runs its required-field validation before we send anywhere. */
+  const sendModeRef = useRef("email");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic guard — the browser's required validation catches most of this,
@@ -80,8 +102,7 @@ const Appointment = () => {
       return;
     }
 
-    const subject = `Appointment Request - ${form.name}`;
-    const body = [
+    const details = [
       `Name: ${form.name}`,
       `Email: ${form.email}`,
       `Service Enquiry: ${form.service}`,
@@ -89,15 +110,71 @@ const Appointment = () => {
       "",
       "Message:",
       form.message,
-    ].join("\n");
+    ];
 
-    const gmailUrl =
-      "https://mail.google.com/mail/?view=cm&fs=1" +
-      `&to=${encodeURIComponent(CLINIC_EMAIL)}` +
-      `&su=${encodeURIComponent(subject)}` +
-      `&body=${encodeURIComponent(body)}`;
+    // Send the same details to the clinic's WhatsApp instead of email.
+    if (sendModeRef.current === "whatsapp") {
+      const text = ["*Appointment Request*", "", ...details].join("\n");
+      window.open(
+        `https://wa.me/${CLINIC_WHATSAPP}?text=${encodeURIComponent(text)}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
+      return;
+    }
 
-    window.open(gmailUrl, "_blank", "noopener,noreferrer");
+    const subject = `Appointment Request - ${form.name}`;
+
+    // No access key configured yet — fall back to opening Gmail so the form
+    // still works.
+    if (!hasFormKey) {
+      const gmailUrl =
+        "https://mail.google.com/mail/?view=cm&fs=1" +
+        `&to=${encodeURIComponent(CLINIC_EMAIL)}` +
+        `&su=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(details.join("\n"))}`;
+      window.open(gmailUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    // Deliver straight to the clinic's inbox — nothing for the visitor to do.
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject,
+          from_name: "Addlife Physiocare Website",
+          name: form.name,
+          email: form.email,
+          service: form.service,
+          preferred_datetime: form.datetime,
+          message: form.message,
+        }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus("success");
+        setForm({
+          name: "",
+          email: "",
+          service: "",
+          datetime: "",
+          message: "",
+        });
+        if (dateRef.current) dateRef.current.type = "text";
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -129,9 +206,7 @@ const Appointment = () => {
             <span className="hl">
               <Letters text="Your Appointment" base={200} step={22} />
             </span>
-            <span className="plain">
-              <Letters text=" Now" base={440} step={22} />
-            </span>
+         
           </h2>
 
           <p>We're Dedicated To Providing More Than Just Treatment</p>
@@ -184,6 +259,26 @@ const Appointment = () => {
                 <h4>10:00am To 9:00pm</h4>
               </div>
             </div>
+          </div>
+
+          <div className="appt-socials">
+            <span className="appt-socials-label">Follow Us</span>
+            <a
+              href="https://www.facebook.com/share/p/19BgobY3kC/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <FaFacebookF />
+            </a>
+            <a
+              href="https://www.instagram.com/reel/DUSecrMEwKJ/?igsh=eXdua3Z0d2ttenU2"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
           </div>
         </Reveal>
 
@@ -262,12 +357,42 @@ const Appointment = () => {
               required
             ></textarea>
 
-            <button type="submit">
-              Schedule Your Appointment
-              <span className="btn-arrow">
-                <ArrowUpRight size={16} />
-              </span>
-            </button>
+            <div className="submit-row">
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                onClick={() => (sendModeRef.current = "email")}
+              >
+                {status === "sending" ? "Sending…" : "Send Us Email"}
+                <span className="btn-arrow">
+                  <ArrowUpRight size={16} />
+                </span>
+              </button>
+
+              <button
+                type="submit"
+                className="wa-btn"
+                onClick={() => (sendModeRef.current = "whatsapp")}
+              >
+                Send on WhatsApp
+                <span className="btn-arrow wa-arrow">
+                  <FaWhatsapp size={16} />
+                </span>
+              </button>
+            </div>
+
+            {status === "success" && (
+              <p className="form-status success">
+                Thank you! Your appointment request has been sent — we'll
+                contact you shortly.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="form-status error">
+                Sorry, that didn't go through. Please try WhatsApp or call us on
+                +91 7797044666.
+              </p>
+            )}
           </form>
         </Reveal>
       </div>

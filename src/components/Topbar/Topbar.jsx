@@ -1,12 +1,6 @@
 import "./TopBar.css";
 import { IoLocationSharp } from "react-icons/io5";
-import {
-  FaTelegramPlane,
-  FaInstagram,
-  FaFacebookF,
-  FaYoutube,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
 
 export default function TopBar() {
   return (
@@ -35,21 +29,22 @@ export default function TopBar() {
         </div>
 
         <div className="topbar-right">
-          <a href="/">
-            <FaTelegramPlane />
-          </a>
-
-          <a href="/">
+          <a
+            href="https://www.instagram.com/reel/DUSecrMEwKJ/?igsh=eXdua3Z0d2ttenU2"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
             <FaInstagram />
           </a>
 
-          <a href="/">
+          <a
+            href="https://www.facebook.com/share/p/19BgobY3kC/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
             <FaFacebookF />
-          </a>
-
-
-          <a href="/">
-            <FaLinkedinIn />
           </a>
         </div>
       </div>

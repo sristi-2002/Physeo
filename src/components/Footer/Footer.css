@@ -121,6 +121,25 @@
   margin-top: 20px;
 }
 
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.social-icons a:hover {
+  background: #35c8d3;
+  transform: translateY(-3px);
+}
+
 .social-icons svg {
   cursor: pointer;
 }
@@ -153,7 +172,20 @@
   justify-content: space-between;
 }
 
+@media (max-width: 1200px) {
+  .footer {
+    padding: 60px 6% 20px;
+  }
+  .footer-content {
+    gap: 24px;
+  }
+}
+
 @media (max-width: 992px) {
+  .footer {
+    padding: 55px 5% 20px;
+  }
+
   .footer-gallery-head h3 {
     font-size: 28px;
   }
@@ -163,12 +195,88 @@
     height: 150px;
   }
 
+  /* collapse the five columns to a 2-column grid on tablet */
   .footer-content {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 45px 24px 20px;
+  }
+
+  .footer-gallery-head h3 {
+    font-size: 26px;
+  }
+  .footer-gallery-head p {
+    font-size: 14px;
+  }
+
+  .footer-square {
+    width: 130px;
+    height: 130px;
+  }
+
+  /* keep the columns row-wise on phones — two per row instead of stacking */
+  .footer-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 18px;
+  }
+
+  /* the newsletter needs the full width for its input + button */
+  .footer-content > .footer-column:last-child {
+    grid-column: 1 / -1;
   }
 
   .footer-bottom {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px 14px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 40px 18px 18px;
+  }
+
+  .footer-gallery-head h3 {
+    font-size: 23px;
+  }
+
+  .footer-square {
+    width: 112px;
+    height: 112px;
+    border-radius: 14px;
+  }
+
+  .footer-column h2 {
+    font-size: 26px;
+  }
+
+  /* two columns still fit at 360px once the type tightens */
+  .footer-content {
+    gap: 22px 14px;
+  }
+
+  .footer-column h4 {
+    font-size: 15px;
+  }
+
+  .footer-column p,
+  .footer-column li,
+  .footer-column a {
+    font-size: 12.5px;
+    line-height: 1.65;
+    word-break: break-word;
+  }
+
+  .footer-bottom {
+    font-size: 11.5px;
   }
 }

@@ -170,14 +170,219 @@
   color: #fff;
 }
 
-@media (max-width: 860px) {
+/* ---------- mobile buttons + popup (hidden on desktop) ---------- */
+.vm-buttons {
+  display: none;
+  gap: 14px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* The section sits on a light mint background, so these mirror the light
+   .vision-card rather than the dark .mission-card. */
+.vm-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 14px;
+  border: 1px solid #dbe6dd;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(12, 45, 47, 0.08);
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vm-btn:active {
+  transform: scale(0.98);
+  border-color: #2ac5d6;
+  box-shadow: 0 6px 18px rgba(42, 197, 214, 0.24);
+}
+
+.vm-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: #2ac5d6;
+  font-size: 26px;
+}
+
+.vm-btn-label {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #123c3e;
+}
+
+.vm-btn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #1a8c8f;
+}
+
+/* popup contents sit on the Modal's light card */
+.vm-modal-text {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: #4a6567;
+}
+
+/* Grouped panel with hairline dividers, matching the WhyChoose popup. */
+.vm-modal-list {
+  margin: 0;
+  padding: 4px 12px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e4eeee;
+  border-radius: 14px;
+  background: #f7fbfb;
+}
+
+.vm-modal-list li {
+  position: relative;
+  padding: 10px 0 10px 20px;
+  border-bottom: 1px solid #e8f0f0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #163f41;
+}
+
+.vm-modal-list li:last-child {
+  border-bottom: none;
+}
+
+.vm-modal-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #27c5d6, #2faa6a);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1200px) {
   .vision-mission {
-    padding: 70px 22px;
+    padding: 72px 56px;
   }
-  .vm-grid {
-    grid-template-columns: 1fr;
+
+  .vm-header h2 {
+    font-size: 46px;
   }
+}
+
+/* tablet — reduce the large side padding, keep the two cards side by side */
+@media (max-width: 992px) {
+  .vision-mission {
+    padding: 64px 36px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+  }
+
   .vm-header h2 {
     font-size: 40px;
+  }
+
+  .vm-grid {
+    gap: 22px;
+  }
+
+  .vm-card {
+    padding: 32px 30px;
+  }
+}
+
+/* large phone — stack the cards */
+@media (max-width: 768px) {
+  .vision-mission {
+    padding: 54px 22px;
+    border-top-left-radius: 44px;
+    border-top-right-radius: 44px;
+  }
+
+  /* swap the two cards for two buttons that open the detail in a popup */
+  .vm-grid {
+    display: none;
+  }
+
+  .vm-buttons {
+    display: flex;
+  }
+
+  .vm-header h2 {
+    font-size: 32px;
+  }
+}
+
+/* small phone */
+@media (max-width: 480px) {
+  .vision-mission {
+    padding: 46px 18px;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+  }
+
+  .vm-header h2 {
+    font-size: 28px;
+  }
+
+  .vm-buttons {
+    gap: 11px;
+  }
+
+  .vm-btn {
+    padding: 20px 10px;
+    gap: 10px;
+    border-radius: 17px;
+  }
+
+  .vm-btn-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 22px;
+  }
+
+  .vm-btn-label {
+    font-size: 19px;
+  }
+
+  .vm-card {
+    padding: 28px 22px;
+    border-radius: 22px;
+  }
+
+  .vm-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .vm-card h3 {
+    font-size: 27px;
+  }
+
+  .vision-card p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .mission-card li {
+    font-size: 14.5px;
   }
 }

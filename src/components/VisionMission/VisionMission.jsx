@@ -1,6 +1,12 @@
+import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import "./VisionMission.css";
 import Reveal from "../Reveal/Reveal";
 import Letters from "../Letters/Letters";
+import Modal from "../Modal/Modal";
+
+const vision =
+  "To be recognized as a leading center of excellence in physiotherapy, rehabilitation, spine care, pain management, and wellness through compassionate, evidence-based, and patient-focused healthcare.";
 
 const mission = [
   "Deliver high-quality physiotherapy and rehabilitation services.",
@@ -11,6 +17,9 @@ const mission = [
 ];
 
 export default function VisionMission() {
+  // null | "vision" | "mission" — drives the mobile popup only.
+  const [openPanel, setOpenPanel] = useState(null);
+
   return (
     <section className="vision-mission">
       <div className="vm-header">
@@ -41,10 +50,7 @@ export default function VisionMission() {
             <Letters text="Our Vision" step={28} />
           </h3>
           <p>
-            <Letters
-              text="To be recognized as a leading center of excellence in physiotherapy, rehabilitation, spine care, pain management, and wellness through compassionate, evidence-based, and patient-focused healthcare."
-              step={9}
-            />
+            <Letters text={vision} step={9} />
           </p>
         </Reveal>
 
@@ -62,6 +68,44 @@ export default function VisionMission() {
           </ul>
         </Reveal>
       </div>
+
+      {/* Mobile — the two cards collapse to buttons that open a popup. */}
+      <div className="vm-buttons">
+        <button className="vm-btn" onClick={() => setOpenPanel("vision")}>
+          <span className="vm-btn-icon">🌟</span>
+          <span className="vm-btn-label">Our Vision</span>
+          <span className="vm-btn-more">
+            View details
+            <ArrowUpRight size={13} />
+          </span>
+        </button>
+
+        <button className="vm-btn" onClick={() => setOpenPanel("mission")}>
+          <span className="vm-btn-icon">🎯</span>
+          <span className="vm-btn-label">Our Mission</span>
+          <span className="vm-btn-more">
+            View details
+            <ArrowUpRight size={13} />
+          </span>
+        </button>
+      </div>
+
+      <Modal
+        open={openPanel !== null}
+        onClose={() => setOpenPanel(null)}
+        label="Our Vision & Mission"
+        title={openPanel === "mission" ? "Our Mission" : "Our Vision"}
+      >
+        {openPanel === "vision" && <p className="vm-modal-text">{vision}</p>}
+
+        {openPanel === "mission" && (
+          <ul className="vm-modal-list">
+            {mission.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        )}
+      </Modal>
     </section>
   );
 }
