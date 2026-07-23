@@ -2,14 +2,11 @@ import { useEffect, useState } from "react";
 import { Mail, Phone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { usePhonePopup } from "../PhonePopup/context";
+import { whatsappUrl } from "../../lib/whatsapp";
 import "./FloatingContact.css";
 
-/* wa.me needs the number in international form with no "+" or spaces */
-const WHATSAPP_URL =
-  "https://wa.me/917797044666?text=" +
-  encodeURIComponent(
-    "Hello, I would like to book a physiotherapy appointment at Addlife Physiocare."
-  );
+const WHATSAPP_MESSAGE =
+  "Hello, I would like to book a physiotherapy appointment at Addlife Physiocare.";
 
 /**
  * Fixed floating contact buttons (WhatsApp + phone + email) that appear once
@@ -29,7 +26,7 @@ export default function FloatingContact() {
   return (
     <div className={`float-contact ${show ? "show" : ""}`}>
       <a
-        href={WHATSAPP_URL}
+        href={whatsappUrl(WHATSAPP_MESSAGE)}
         target="_blank"
         rel="noopener noreferrer"
         className="fc-btn fc-whatsapp"

@@ -39,7 +39,7 @@ export default function TopBar() {
           </a>
 
           <a
-            href="https://www.facebook.com/share/p/19BgobY3kC/"
+            href="https://www.facebook.com/addlifephysiocare"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"

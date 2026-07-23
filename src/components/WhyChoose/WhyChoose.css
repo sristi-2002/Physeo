@@ -477,8 +477,11 @@
 
 /* tablet & below — swap the desktop split for the mobile card grid */
 @media (max-width: 992px) {
+  /* The next section (.vision-mission) pulls itself up by 90px for its
+     rounded-corner overlap, so the bottom padding has to clear that or it
+     covers the last card. */
   .why-choose {
-    padding: 72px 5%;
+    padding: 72px 5% 135px;
   }
 
   .wc-head h2 {
@@ -498,7 +501,7 @@
 /* large phone */
 @media (max-width: 768px) {
   .why-choose {
-    padding: 60px 20px;
+    padding: 60px 20px 130px;
   }
 
   .wc-head {
@@ -517,7 +520,7 @@
 /* small phone */
 @media (max-width: 480px) {
   .why-choose {
-    padding: 50px 18px;
+    padding: 50px 18px 125px;
   }
 
   .wc-head h2 {

@@ -329,8 +329,47 @@
   .techniques-sub {
     font-size: 14px;
   }
+
+  /* Twelve stacked cards ran very long, so on phones each technique becomes
+     a small pill that flows and wraps. Tapping still opens the popup, so the
+     "View details" hint is redundant and only made the pill taller. */
+  .techniques-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
   .technique-card {
-    padding: 24px 22px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 9px;
+    width: auto;
+    max-width: 100%;
+    padding: 9px 15px 9px 9px;
+    border-radius: 40px;
+    text-align: left;
+  }
+  /* the hover accent bar makes no sense on a pill */
+  .technique-card::before {
+    display: none;
+  }
+  .technique-icon {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    border-radius: 50%;
+    font-size: 15px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    animation: none;
+  }
+  .technique-card h4 {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.25;
+  }
+  .technique-more {
+    display: none;
   }
 }
 
@@ -350,29 +389,21 @@
     font-size: 30px;
   }
 
-  /* compact 2-up card grid instead of full-width bars */
+  /* pills tighten a little further on the smallest screens */
   .techniques-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 8px;
   }
   .technique-card {
-    padding: 18px 14px;
-    border-radius: 16px;
+    gap: 8px;
+    padding: 8px 13px 8px 8px;
   }
   .technique-icon {
-    width: 44px;
-    height: 44px;
-    font-size: 22px;
-    border-radius: 13px;
-    margin-bottom: 12px;
+    width: 27px;
+    height: 27px;
+    font-size: 14px;
   }
   .technique-card h4 {
-    font-size: 17px;
-    line-height: 1.2;
-    margin-bottom: 8px;
-  }
-  .technique-more {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .tech-popup {

@@ -8,9 +8,10 @@ import {
   FaInstagram,
   FaWhatsapp,
 } from "react-icons/fa";
-import { Sparkle, Calendar, ArrowUpRight } from "lucide-react";
+import { Sparkle, Calendar } from "lucide-react";
 import Reveal from "../Reveal/Reveal";
 import Letters from "../Letters/Letters";
+import { whatsappUrl } from "../../lib/whatsapp";
 import { usePhonePopup } from "../PhonePopup/context";
 import galleryImg1 from "../../assets/1.jpeg";
 import galleryImg2 from "../../assets/2.jpeg";
@@ -30,23 +31,36 @@ const marqueeItems = [
   "Home Physiotherapy Services",
 ];
 
-const CLINIC_EMAIL = "addlifephysiocare@gmail.com";
-/* wa.me needs the number in international form with no "+" or spaces */
-const CLINIC_WHATSAPP = "917797044666";
+/**
+ * Turns the picker's raw "YYYY-MM-DDTHH:mm" into "18/02/2002, 04:30 PM".
+ *
+ * The parts are split by hand rather than run through `new Date()` on purpose:
+ * a datetime-local value carries no timezone, so parsing it into a Date and
+ * reformatting would shift the time for anyone whose device isn't on IST. The
+ * patient picks a clinic-time slot, so it must show back exactly as chosen.
+ */
+const formatDateTime = (raw) => {
+  if (!raw || !raw.includes("T")) return raw || "";
 
-/* Free access key from https://web3forms.com — it is tied to the clinic's
-   inbox and is meant to be public, so it is safe in frontend code.
-   Until a real key is pasted here the form falls back to opening Gmail. */
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
-const hasFormKey =
-  WEB3FORMS_ACCESS_KEY && !WEB3FORMS_ACCESS_KEY.startsWith("YOUR_");
+  const [datePart, timePart] = raw.split("T");
+  const [year, month, day] = datePart.split("-");
+  const [hourStr, minute] = timePart.split(":");
+  if (!year || !month || !day || !hourStr || !minute) return raw;
+
+  const hour24 = Number(hourStr);
+  const suffix = hour24 >= 12 ? "PM" : "AM";
+  const hour12 = String(hour24 % 12 || 12).padStart(2, "0");
+
+  return `${day}/${month}/${year}, ${hour12}:${minute} ${suffix}`;
+};
 
 const Appointment = () => {
   const openPhone = usePhonePopup();
   const dateRef = useRef(null);
   const [slide, setSlide] = useState(0);
-  // null | "sending" | "success" | "error"
-  const [status, setStatus] = useState(null);
+  // The field swaps to a native picker while focused and shows the formatted
+  // date the rest of the time.
+  const [dateFocused, setDateFocused] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -70,24 +84,28 @@ const Appointment = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Open the native date & time calendar picker when the icon is clicked.
+  /* Swap to the native picker. The type and value are set on the element
+     directly as well as in state, because showPicker() needs the input to
+     already be a datetime-local while the click's user activation is live. */
+  const revealPicker = (el) => {
+    if (!el) return;
+    setDateFocused(true);
+    el.type = "datetime-local";
+    el.value = form.datetime || "";
+  };
+
   const openDatePicker = () => {
     const el = dateRef.current;
-    if (!el) return;
-    el.type = "datetime-local";
-    el.focus();
+    revealPicker(el);
+    el?.focus();
     try {
-      el.showPicker?.();
+      el?.showPicker?.();
     } catch {
       /* showPicker not supported — focusing already reveals the picker */
     }
   };
 
-  /* Which button was pressed — both are submit buttons so the browser still
-     runs its required-field validation before we send anywhere. */
-  const sendModeRef = useRef("email");
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     // Basic guard — the browser's required validation catches most of this,
@@ -102,79 +120,19 @@ const Appointment = () => {
       return;
     }
 
+    // WhatsApp is the only delivery route for this form.
     const details = [
       `Name: ${form.name}`,
       `Email: ${form.email}`,
       `Service Enquiry: ${form.service}`,
-      `Preferred Date & Time: ${form.datetime}`,
+      `Preferred Date & Time: ${formatDateTime(form.datetime)} (IST)`,
       "",
       "Message:",
       form.message,
     ];
 
-    // Send the same details to the clinic's WhatsApp instead of email.
-    if (sendModeRef.current === "whatsapp") {
-      const text = ["*Appointment Request*", "", ...details].join("\n");
-      window.open(
-        `https://wa.me/${CLINIC_WHATSAPP}?text=${encodeURIComponent(text)}`,
-        "_blank",
-        "noopener,noreferrer"
-      );
-      return;
-    }
-
-    const subject = `Appointment Request - ${form.name}`;
-
-    // No access key configured yet — fall back to opening Gmail so the form
-    // still works.
-    if (!hasFormKey) {
-      const gmailUrl =
-        "https://mail.google.com/mail/?view=cm&fs=1" +
-        `&to=${encodeURIComponent(CLINIC_EMAIL)}` +
-        `&su=${encodeURIComponent(subject)}` +
-        `&body=${encodeURIComponent(details.join("\n"))}`;
-      window.open(gmailUrl, "_blank", "noopener,noreferrer");
-      return;
-    }
-
-    // Deliver straight to the clinic's inbox — nothing for the visitor to do.
-    setStatus("sending");
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject,
-          from_name: "Addlife Physiocare Website",
-          name: form.name,
-          email: form.email,
-          service: form.service,
-          preferred_datetime: form.datetime,
-          message: form.message,
-        }),
-      });
-      const data = await res.json();
-
-      if (data.success) {
-        setStatus("success");
-        setForm({
-          name: "",
-          email: "",
-          service: "",
-          datetime: "",
-          message: "",
-        });
-        if (dateRef.current) dateRef.current.type = "text";
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
+    const text = ["*Appointment Request*", "", ...details].join("\n");
+    window.open(whatsappUrl(text), "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -264,7 +222,7 @@ const Appointment = () => {
           <div className="appt-socials">
             <span className="appt-socials-label">Follow Us</span>
             <a
-              href="https://www.facebook.com/share/p/19BgobY3kC/"
+              href="https://www.facebook.com/addlifephysiocare"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -326,15 +284,18 @@ const Appointment = () => {
               <div className="date-field">
                 <input
                   ref={dateRef}
-                  type="text"
+                  /* datetime-local while the picker is open, plain text the
+                     rest of the time so the value reads as 18/02/2002 rather
+                     than the raw 2002-02-18T16:30 */
+                  type={dateFocused ? "datetime-local" : "text"}
                   name="datetime"
                   placeholder="Select Date & Time*"
-                  value={form.datetime}
+                  value={
+                    dateFocused ? form.datetime : formatDateTime(form.datetime)
+                  }
                   onChange={handleChange}
-                  onFocus={(e) => (e.target.type = "datetime-local")}
-                  onBlur={(e) => {
-                    if (!e.target.value) e.target.type = "text";
-                  }}
+                  onFocus={(e) => revealPicker(e.target)}
+                  onBlur={() => setDateFocused(false)}
                   required
                 />
                 <button
@@ -358,41 +319,13 @@ const Appointment = () => {
             ></textarea>
 
             <div className="submit-row">
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                onClick={() => (sendModeRef.current = "email")}
-              >
-                {status === "sending" ? "Sending…" : "Send Us Email"}
-                <span className="btn-arrow">
-                  <ArrowUpRight size={16} />
-                </span>
-              </button>
-
-              <button
-                type="submit"
-                className="wa-btn"
-                onClick={() => (sendModeRef.current = "whatsapp")}
-              >
+              <button type="submit" className="wa-btn">
                 Send on WhatsApp
                 <span className="btn-arrow wa-arrow">
                   <FaWhatsapp size={16} />
                 </span>
               </button>
             </div>
-
-            {status === "success" && (
-              <p className="form-status success">
-                Thank you! Your appointment request has been sent — we'll
-                contact you shortly.
-              </p>
-            )}
-            {status === "error" && (
-              <p className="form-status error">
-                Sorry, that didn't go through. Please try WhatsApp or call us on
-                +91 7797044666.
-              </p>
-            )}
           </form>
         </Reveal>
       </div>

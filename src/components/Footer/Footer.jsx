@@ -77,7 +77,7 @@ const Address = () => {
               <FaInstagram />
             </a>
             <a
-              href="https://www.facebook.com/share/p/19BgobY3kC/"
+              href="https://www.facebook.com/addlifephysiocare"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -148,16 +148,7 @@ const Address = () => {
           </ul>
         </Reveal>
 
-        <Reveal direction="up" delay={360} className="footer-column">
-          <h4>Newsletter</h4>
-
-          <input
-            type="email"
-            placeholder="yourmail@gmail.com"
-          />
-
-          <button>Subscribe Now</button>
-        </Reveal>
+     
       </div>
 
       <div className="footer-bottom">

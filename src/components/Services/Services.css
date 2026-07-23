@@ -550,12 +550,34 @@
     padding: 22px 22px 26px;
     scroll-padding-left: 22px;
   }
+  /* Shorter card, and narrow enough that the next one peeks in from the
+     right — the swipe affordance the tall full-width card didn't give. */
   .flip-card {
-    flex-basis: 280px;
-    height: 420px;
+    flex-basis: 74vw;
+    max-width: 280px;
+    height: 330px;
+  }
+  .flip-front-overlay {
+    padding: 18px;
+    gap: 6px;
   }
   .flip-front-overlay h3 {
-    font-size: 26px;
+    font-size: 22px;
+  }
+  .flip-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 22px;
+  }
+  .flip-hint {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  .flip-back {
+    padding: 20px 18px;
+  }
+  .flip-back h4 {
+    font-size: 22px;
   }
 }
 
@@ -577,23 +599,32 @@
     padding: 20px 18px 24px;
     scroll-padding-left: 18px;
   }
-  /* card sized to sit comfortably within the smallest viewports */
+  /* card sized to sit comfortably within the smallest viewports, still
+     leaving the next card visible at the right edge */
   .flip-card {
-    flex-basis: 82vw;
-    max-width: 300px;
-    height: 400px;
+    flex-basis: 76vw;
+    max-width: 260px;
+    height: 305px;
   }
   .flip-front-overlay {
-    padding: 20px;
+    padding: 16px;
   }
   .flip-front-overlay h3 {
-    font-size: 24px;
+    font-size: 20px;
+  }
+  .flip-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
   }
   .flip-back {
-    padding: 22px 18px;
+    padding: 18px 16px;
   }
   .flip-back h4 {
-    font-size: 23px;
+    font-size: 20px;
+  }
+  .flip-back li {
+    font-size: 12.5px;
   }
   .scroll-controls button {
     width: 44px;
