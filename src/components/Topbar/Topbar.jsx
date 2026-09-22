@@ -1,4 +1,4 @@
-import "./TopBar.css";
+import "./Topbar.css";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 
