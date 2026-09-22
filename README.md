@@ -1,16 +1,115 @@
-# React + Vite
+# Physeo — Physiotherapy & Healthcare Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fe2ab6ad-fbcd-4205-beb4-9536a2e8cbd1/deploy-status)](https://app.netlify.com/projects/heathcare-details/deploys)
 
-Currently, two official plugins are available:
+A modern, responsive physiotherapy and healthcare website built with **React.js and Vite**, designed to provide an accessible and user-friendly experience for patients seeking physiotherapy and healthcare services.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+* Responsive design for desktop, tablet, and mobile
+* Modern healthcare-focused user interface
+* Physiotherapy service information
+* Appointment/contact sections
+* Responsive navigation
+* Reusable React components
+* Optimized production build with Vite
+* Deployed on Netlify
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+* **Frontend:** React.js
+* **Build Tool:** Vite
+* **Language:** JavaScript
+* **Styling:** CSS
+* **Deployment:** Netlify
+* **Version Control:** Git & GitHub
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have **Node.js** and **npm** installed.
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/sristi-2002/Physeo.git
+```
+
+Navigate to the project:
+
+```bash
+cd Physeo
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at the local development URL shown in your terminal.
+
+## 📦 Production Build
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+The optimized production files are generated inside the `dist` folder.
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## 🌐 Deployment
+
+The project is configured for deployment on **Netlify**.
+
+### Netlify Configuration
+
+```text
+Build command: npm run build
+Publish directory: dist
+```
+
+Every new push to the connected GitHub branch can trigger a new Netlify deployment.
+
+## 📁 Project Structure
+
+```text
+Physeo/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+## 👩‍💻 Author
+
+**Sristi Mitra**
+
+GitHub: https://github.com/sristi-2002
+
+## 📄 License
+
+This project is developed for healthcare/physiotherapy website purposes.
